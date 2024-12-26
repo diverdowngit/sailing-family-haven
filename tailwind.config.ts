@@ -22,7 +22,6 @@ export default {
         luminari: ["Luminari", "Fantasy", "serif"],
       },
       colors: {
-        'custom-bg': '#badffeb8',
         navy: {
           DEFAULT: "#1B3C73",
           dark: "#0A1F3D",
