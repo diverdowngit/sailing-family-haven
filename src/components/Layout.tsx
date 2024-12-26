@@ -7,7 +7,7 @@ interface LayoutProps {
 
 const Layout = ({ children }: LayoutProps) => {
   return (
-    <div className="min-h-screen flex flex-col">
+    <div className="min-h-screen flex flex-col" style={{ backgroundColor: '#badffeb8' }}>
       <Navigation />
       <main className="flex-grow pt-16">{children}</main>
       <Footer />
