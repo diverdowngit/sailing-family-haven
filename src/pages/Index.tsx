@@ -5,14 +5,19 @@ const Home = () => {
   return (
     <div>
       {/* Hero Section */}
-      <section className="relative h-[80vh] bg-light-blue">
-        <div className="absolute inset-0 bg-gradient-to-r from-navy/50 to-transparent" />
+      <section 
+        className="relative h-[80vh] bg-cover bg-center"
+        style={{
+          backgroundImage: "url('/lovable-uploads/d88858c1-aec0-433a-a468-5628bc82e629.png')"
+        }}
+      >
+        <div className="absolute inset-0 bg-gradient-to-r from-navy/60 to-transparent" />
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-full flex items-center">
           <div className="text-white max-w-xl">
-            <h1 className="text-4xl md:text-6xl font-bold mb-6 animate-wave">
+            <h1 className="text-4xl md:text-6xl font-bold mb-6 animate-wave font-luminari">
               Adventure Awaits on the Open Seas
             </h1>
-            <p className="text-xl mb-8">
+            <p className="text-xl mb-8 font-luminari">
               Follow our family's journey as we explore the world's oceans and share our
               sailing adventures.
             </p>
@@ -31,7 +36,7 @@ const Home = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             <div className="bg-white p-6 rounded-lg shadow-md">
-              <h2 className="text-2xl font-bold text-navy mb-4">Latest Blog</h2>
+              <h2 className="text-2xl font-bold text-navy mb-4 font-luminari">Latest Blog</h2>
               <p className="text-gray-600 mb-4">
                 Read about our most recent adventures and discoveries at sea.
               </p>
@@ -43,7 +48,7 @@ const Home = () => {
               </Link>
             </div>
             <div className="bg-white p-6 rounded-lg shadow-md">
-              <h2 className="text-2xl font-bold text-navy mb-4">Shop Merch</h2>
+              <h2 className="text-2xl font-bold text-navy mb-4 font-luminari">Shop Merch</h2>
               <p className="text-gray-600 mb-4">
                 Support our journey with our exclusive merchandise collection.
               </p>
@@ -55,7 +60,7 @@ const Home = () => {
               </Link>
             </div>
             <div className="bg-white p-6 rounded-lg shadow-md">
-              <h2 className="text-2xl font-bold text-navy mb-4">Photo Gallery</h2>
+              <h2 className="text-2xl font-bold text-navy mb-4 font-luminari">Photo Gallery</h2>
               <p className="text-gray-600 mb-4">
                 Experience the beauty of sailing through our photo collection.
               </p>
