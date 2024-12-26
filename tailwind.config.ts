@@ -18,6 +18,9 @@ export default {
       },
     },
     extend: {
+      fontFamily: {
+        luminari: ["Luminari", "Fantasy", "serif"],
+      },
       colors: {
         navy: {
           DEFAULT: "#1B3C73",
