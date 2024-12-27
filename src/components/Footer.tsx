@@ -2,8 +2,14 @@ import { Facebook, Instagram, Twitter } from "lucide-react";
 
 const Footer = () => {
   return (
-    <footer className="bg-navy text-white py-12">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <footer 
+      className="relative text-white py-12 bg-cover bg-center"
+      style={{
+        backgroundImage: "url('https://raw.githubusercontent.com/diverdowngit/svseasenorablog/cd2be307e967ab6da1e5e432c3199ca728eca0f2/src/images/water.webp')",
+      }}
+    >
+      <div className="absolute inset-0 bg-navy/80" /> {/* Overlay for better text readability */}
+      <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           <div>
             <h3 className="text-xl font-bold mb-4">Sailing Family</h3>
