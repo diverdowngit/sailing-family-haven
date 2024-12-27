@@ -8,7 +8,11 @@ export const contentfulClient = createClient({
 export interface BlogPost {
   sys: {
     id: string;
-    contentTypeId: string;
+    contentType: {
+      sys: {
+        id: string;
+      };
+    };
   };
   fields: {
     title: string;
@@ -29,7 +33,11 @@ export interface BlogPost {
 export interface GalleryImage {
   sys: {
     id: string;
-    contentTypeId: string;
+    contentType: {
+      sys: {
+        id: string;
+      };
+    };
   };
   fields: {
     title: string;
