@@ -6,6 +6,10 @@ export const contentfulClient = createClient({
 });
 
 export interface BlogPost {
+  sys: {
+    id: string;
+    contentTypeId: string;
+  };
   fields: {
     title: string;
     slug: string;
@@ -20,7 +24,21 @@ export interface BlogPost {
       };
     };
   };
+}
+
+export interface GalleryImage {
   sys: {
     id: string;
+    contentTypeId: string;
+  };
+  fields: {
+    title: string;
+    image: {
+      fields: {
+        file: {
+          url: string;
+        };
+      };
+    };
   };
 }
