@@ -11,7 +11,7 @@ const Blog = () => {
         content_type: "blog",
         order: "-fields.publishDate",
       });
-      return response.items;
+      return response.items as BlogPost[];
     },
   });
 

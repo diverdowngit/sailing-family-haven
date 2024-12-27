@@ -9,7 +9,7 @@ const Gallery = () => {
       const response = await contentfulClient.getEntries<GalleryImage>({
         content_type: "gallery",
       });
-      return response.items;
+      return response.items as GalleryImage[];
     },
   });
 

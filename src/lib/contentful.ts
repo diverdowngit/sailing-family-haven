@@ -18,7 +18,7 @@ export interface BlogPost {
     title: string;
     slug: string;
     excerpt: string;
-    content: any; // Rich text content
+    content: any;
     publishDate: string;
     featuredImage: {
       fields: {
