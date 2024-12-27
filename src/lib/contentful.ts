@@ -5,17 +5,22 @@ export const contentfulClient = createClient({
   accessToken: import.meta.env.VITE_CONTENTFUL_ACCESS_TOKEN ?? '',
 });
 
-export type BlogPost = {
-  title: string;
-  slug: string;
-  excerpt: string;
-  content: any; // Rich text content
-  publishDate: string;
-  featuredImage: {
-    fields: {
-      file: {
-        url: string;
+export interface BlogPost {
+  fields: {
+    title: string;
+    slug: string;
+    excerpt: string;
+    content: any; // Rich text content
+    publishDate: string;
+    featuredImage: {
+      fields: {
+        file: {
+          url: string;
+        };
       };
     };
   };
-};
+  sys: {
+    id: string;
+  };
+}
