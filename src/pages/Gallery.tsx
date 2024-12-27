@@ -1,15 +1,13 @@
 import { useQuery } from "@tanstack/react-query";
-import { contentfulClient, type GalleryImage } from "@/lib/contentful";
+import { type GalleryImage, placeholderGalleryImages } from "@/lib/contentful";
 import { Skeleton } from "@/components/ui/skeleton";
 
 const Gallery = () => {
   const { data: images, isLoading, error } = useQuery({
     queryKey: ["gallery-images"],
     queryFn: async () => {
-      const response = await contentfulClient.getEntries<GalleryImage>({
-        content_type: "gallery",
-      });
-      return response.items as GalleryImage[];
+      // Return placeholder data instead of fetching from Contentful
+      return placeholderGalleryImages;
     },
   });
 
@@ -38,7 +36,7 @@ const Gallery = () => {
               >
                 {image.fields.image && (
                   <img
-                    src={`https:${image.fields.image.fields.file.url}`}
+                    src={image.fields.image.fields.file.url}
                     alt={image.fields.title}
                     className="w-full h-full object-cover"
                   />

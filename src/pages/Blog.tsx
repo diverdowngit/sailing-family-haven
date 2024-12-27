@@ -1,5 +1,5 @@
 import { useQuery } from "@tanstack/react-query";
-import { contentfulClient, type BlogPost } from "@/lib/contentful";
+import { type BlogPost, placeholderBlogPosts } from "@/lib/contentful";
 import { Skeleton } from "@/components/ui/skeleton";
 import { format } from "date-fns";
 
@@ -7,11 +7,8 @@ const Blog = () => {
   const { data: posts, isLoading, error } = useQuery({
     queryKey: ["blog-posts"],
     queryFn: async () => {
-      const response = await contentfulClient.getEntries<BlogPost>({
-        content_type: "blog",
-        order: "-fields.publishDate",
-      });
-      return response.items as BlogPost[];
+      // Return placeholder data instead of fetching from Contentful
+      return placeholderBlogPosts;
     },
   });
 
@@ -45,7 +42,7 @@ const Blog = () => {
               >
                 {post.fields.featuredImage && (
                   <img
-                    src={`https:${post.fields.featuredImage.fields.file.url}`}
+                    src={post.fields.featuredImage.fields.file.url}
                     alt={post.fields.title}
                     className="w-full h-48 object-cover"
                   />
