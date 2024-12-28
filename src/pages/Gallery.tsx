@@ -37,15 +37,22 @@ const Gallery = () => {
           : images?.map((image) => (
               <div
                 key={image.sys.id}
-                className="aspect-square rounded-lg overflow-hidden shadow-md hover:shadow-lg transition-all duration-300 cursor-pointer"
+                className="group relative aspect-square rounded-lg overflow-hidden shadow-md hover:shadow-lg transition-all duration-300 cursor-pointer"
                 onClick={() => setSelectedImage(image)}
               >
                 {image.fields.image && (
-                  <img
-                    src={image.fields.image.fields.file.url}
-                    alt={image.fields.title}
-                    className="w-full h-full object-cover transform transition-transform duration-300 hover:scale-110"
-                  />
+                  <>
+                    <img
+                      src={image.fields.image.fields.file.url}
+                      alt={image.fields.title}
+                      className="w-full h-full object-cover transform transition-transform duration-300 group-hover:scale-110"
+                    />
+                    <div className="absolute inset-0 bg-black bg-opacity-40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end justify-center p-4">
+                      <h3 className="text-white text-lg font-semibold text-center">
+                        {image.fields.title}
+                      </h3>
+                    </div>
+                  </>
                 )}
               </div>
             ))}
@@ -54,11 +61,18 @@ const Gallery = () => {
       <Dialog open={!!selectedImage} onOpenChange={() => setSelectedImage(null)}>
         <DialogContent className="max-w-[75vw] max-h-[75vh]">
           {selectedImage?.fields.image && (
-            <img
-              src={selectedImage.fields.image.fields.file.url}
-              alt={selectedImage.fields.title}
-              className="w-full h-full object-contain"
-            />
+            <div className="relative">
+              <img
+                src={selectedImage.fields.image.fields.file.url}
+                alt={selectedImage.fields.title}
+                className="w-full h-full object-contain"
+              />
+              <div className="absolute bottom-0 left-0 right-0 bg-black bg-opacity-50 p-4">
+                <h2 className="text-white text-xl font-semibold text-center">
+                  {selectedImage.fields.title}
+                </h2>
+              </div>
+            </div>
           )}
         </DialogContent>
       </Dialog>
