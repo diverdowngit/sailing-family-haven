@@ -78,7 +78,7 @@ const Blog = () => {
       </div>
 
       <Dialog open={!!selectedPost} onOpenChange={() => setSelectedPost(null)}>
-        <DialogContent className="max-w-4xl max-h-[80vh] overflow-y-auto">
+        <DialogContent className="max-w-[95vw] max-h-[95vh] w-[95vw] overflow-y-auto">
           {selectedPost && (
             <>
               <DialogHeader>
