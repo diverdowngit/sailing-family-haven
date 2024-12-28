@@ -6,7 +6,6 @@ const Gallery = () => {
   const { data: images, isLoading, error } = useQuery({
     queryKey: ["gallery-images"],
     queryFn: async () => {
-      // Return placeholder data instead of fetching from Contentful
       return placeholderGalleryImages;
     },
   });
@@ -32,13 +31,13 @@ const Gallery = () => {
           : images?.map((image) => (
               <div
                 key={image.sys.id}
-                className="aspect-square rounded-lg overflow-hidden shadow-md hover:shadow-lg transition-shadow"
+                className="aspect-square rounded-lg overflow-hidden shadow-md hover:shadow-lg transition-all duration-300"
               >
                 {image.fields.image && (
                   <img
                     src={image.fields.image.fields.file.url}
                     alt={image.fields.title}
-                    className="w-full h-full object-cover"
+                    className="w-full h-full object-cover transform transition-transform duration-300 hover:scale-110"
                   />
                 )}
               </div>

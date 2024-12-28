@@ -2,15 +2,25 @@ import { useQuery } from "@tanstack/react-query";
 import { type BlogPost, placeholderBlogPosts } from "@/lib/contentful";
 import { Skeleton } from "@/components/ui/skeleton";
 import { format } from "date-fns";
+import { useState } from "react";
+import { Button } from "@/components/ui/button";
 
 const Blog = () => {
+  const [expandedPosts, setExpandedPosts] = useState<string[]>([]);
   const { data: posts, isLoading, error } = useQuery({
     queryKey: ["blog-posts"],
     queryFn: async () => {
-      // Return placeholder data instead of fetching from Contentful
       return placeholderBlogPosts;
     },
   });
+
+  const toggleReadMore = (postId: string) => {
+    setExpandedPosts((prev) =>
+      prev.includes(postId)
+        ? prev.filter((id) => id !== postId)
+        : [...prev, postId]
+    );
+  };
 
   if (error) {
     return (
@@ -54,10 +64,18 @@ const Blog = () => {
                   <time className="text-sm text-gray-500 mb-4 block">
                     {format(new Date(post.fields.publishDate), 'MMMM d, yyyy')}
                   </time>
-                  <p className="text-gray-600 mb-4">{post.fields.excerpt}</p>
-                  <button className="text-coral hover:text-coral/80">
-                    Read More
-                  </button>
+                  <div className="text-gray-600 mb-4">
+                    {expandedPosts.includes(post.sys.id)
+                      ? post.fields.content
+                      : `${post.fields.excerpt}...`}
+                  </div>
+                  <Button
+                    variant="ghost"
+                    className="text-coral hover:text-coral/80"
+                    onClick={() => toggleReadMore(post.sys.id)}
+                  >
+                    {expandedPosts.includes(post.sys.id) ? "Show Less" : "Read More"}
+                  </Button>
                 </div>
               </article>
             ))}
