@@ -4,23 +4,21 @@ import { Skeleton } from "@/components/ui/skeleton";
 import { format } from "date-fns";
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
+import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+} from "@/components/ui/dialog";
 
 const Blog = () => {
-  const [expandedPosts, setExpandedPosts] = useState<string[]>([]);
+  const [selectedPost, setSelectedPost] = useState<BlogPost | null>(null);
   const { data: posts, isLoading, error } = useQuery({
     queryKey: ["blog-posts"],
     queryFn: async () => {
       return placeholderBlogPosts;
     },
   });
-
-  const toggleReadMore = (postId: string) => {
-    setExpandedPosts((prev) =>
-      prev.includes(postId)
-        ? prev.filter((id) => id !== postId)
-        : [...prev, postId]
-    );
-  };
 
   if (error) {
     return (
@@ -65,21 +63,44 @@ const Blog = () => {
                     {format(new Date(post.fields.publishDate), 'MMMM d, yyyy')}
                   </time>
                   <div className="text-gray-600 mb-4">
-                    {expandedPosts.includes(post.sys.id)
-                      ? post.fields.content
-                      : `${post.fields.excerpt}...`}
+                    {post.fields.excerpt}...
                   </div>
                   <Button
                     variant="ghost"
                     className="text-coral hover:text-coral/80"
-                    onClick={() => toggleReadMore(post.sys.id)}
+                    onClick={() => setSelectedPost(post)}
                   >
-                    {expandedPosts.includes(post.sys.id) ? "Show Less" : "Read More"}
+                    Read More
                   </Button>
                 </div>
               </article>
             ))}
       </div>
+
+      <Dialog open={!!selectedPost} onOpenChange={() => setSelectedPost(null)}>
+        <DialogContent className="max-w-4xl max-h-[80vh] overflow-y-auto">
+          {selectedPost && (
+            <>
+              <DialogHeader>
+                <DialogTitle>{selectedPost.fields.title}</DialogTitle>
+                <time className="text-sm text-gray-500 mt-2">
+                  {format(new Date(selectedPost.fields.publishDate), 'MMMM d, yyyy')}
+                </time>
+              </DialogHeader>
+              {selectedPost.fields.featuredImage && (
+                <img
+                  src={selectedPost.fields.featuredImage.fields.file.url}
+                  alt={selectedPost.fields.title}
+                  className="w-full h-64 object-cover rounded-md my-4"
+                />
+              )}
+              <div className="text-gray-600 whitespace-pre-wrap">
+                {selectedPost.fields.content}
+              </div>
+            </>
+          )}
+        </DialogContent>
+      </Dialog>
     </div>
   );
 };

@@ -1,8 +1,14 @@
 import { useQuery } from "@tanstack/react-query";
 import { type GalleryImage, placeholderGalleryImages } from "@/lib/contentful";
 import { Skeleton } from "@/components/ui/skeleton";
+import {
+  Dialog,
+  DialogContent,
+} from "@/components/ui/dialog";
+import { useState } from "react";
 
 const Gallery = () => {
+  const [selectedImage, setSelectedImage] = useState<GalleryImage | null>(null);
   const { data: images, isLoading, error } = useQuery({
     queryKey: ["gallery-images"],
     queryFn: async () => {
@@ -31,7 +37,8 @@ const Gallery = () => {
           : images?.map((image) => (
               <div
                 key={image.sys.id}
-                className="aspect-square rounded-lg overflow-hidden shadow-md hover:shadow-lg transition-all duration-300"
+                className="aspect-square rounded-lg overflow-hidden shadow-md hover:shadow-lg transition-all duration-300 cursor-pointer"
+                onClick={() => setSelectedImage(image)}
               >
                 {image.fields.image && (
                   <img
@@ -43,6 +50,18 @@ const Gallery = () => {
               </div>
             ))}
       </div>
+
+      <Dialog open={!!selectedImage} onOpenChange={() => setSelectedImage(null)}>
+        <DialogContent className="max-w-[75vw] max-h-[75vh]">
+          {selectedImage?.fields.image && (
+            <img
+              src={selectedImage.fields.image.fields.file.url}
+              alt={selectedImage.fields.title}
+              className="w-full h-full object-contain"
+            />
+          )}
+        </DialogContent>
+      </Dialog>
     </div>
   );
 };
