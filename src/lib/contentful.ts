@@ -36,13 +36,8 @@ interface GalleryImageFields {
   };
 }
 
-export interface BlogPost extends Entry<BlogPostFields> {
-  contentTypeId: 'blog';
-}
-
-export interface GalleryImage extends Entry<GalleryImageFields> {
-  contentTypeId: 'galleryImage';
-}
+export interface BlogPost extends Entry<BlogPostFields> {}
+export interface GalleryImage extends Entry<GalleryImageFields> {}
 
 // Function to fetch blog posts from Contentful
 export const fetchBlogPosts = async (): Promise<BlogPost[]> => {
@@ -74,8 +69,35 @@ export const fetchGalleryImages = async (): Promise<GalleryImage[]> => {
 // Placeholder data for development
 export const placeholderBlogPosts: BlogPost[] = [
   {
-    sys: { id: '1', contentType: { sys: { id: 'blog' } } },
-    contentTypeId: 'blog',
+    sys: { 
+      id: '1', 
+      type: 'Entry',
+      contentType: { 
+        sys: { 
+          type: 'Link',
+          linkType: 'ContentType',
+          id: 'blog' 
+        } 
+      },
+      space: {
+        sys: {
+          type: 'Link',
+          linkType: 'Space',
+          id: 'placeholder'
+        }
+      },
+      environment: {
+        sys: {
+          type: 'Link',
+          linkType: 'Environment',
+          id: 'master'
+        }
+      },
+      createdAt: '2024-01-15T00:00:00.000Z',
+      updatedAt: '2024-01-15T00:00:00.000Z',
+      revision: 1,
+      locale: 'en-US'
+    },
     fields: {
       title: 'Our First Sailing Adventure',
       slug: 'first-sailing-adventure',
@@ -105,8 +127,35 @@ export const placeholderBlogPosts: BlogPost[] = [
     }
   },
   {
-    sys: { id: '2', contentType: { sys: { id: 'blog' } } },
-    contentTypeId: 'blog',
+    sys: { 
+      id: '2', 
+      type: 'Entry',
+      contentType: { 
+        sys: { 
+          type: 'Link',
+          linkType: 'ContentType',
+          id: 'blog' 
+        } 
+      },
+      space: {
+        sys: {
+          type: 'Link',
+          linkType: 'Space',
+          id: 'placeholder'
+        }
+      },
+      environment: {
+        sys: {
+          type: 'Link',
+          linkType: 'Environment',
+          id: 'master'
+        }
+      },
+      createdAt: '2024-01-10T00:00:00.000Z',
+      updatedAt: '2024-01-10T00:00:00.000Z',
+      revision: 1,
+      locale: 'en-US'
+    },
     fields: {
       title: 'Life at Sea',
       slug: 'life-at-sea',
@@ -139,8 +188,35 @@ export const placeholderBlogPosts: BlogPost[] = [
 
 export const placeholderGalleryImages: GalleryImage[] = [
   {
-    sys: { id: '1', contentType: { sys: { id: 'gallery' } } },
-    contentTypeId: 'galleryImage',
+    sys: { 
+      id: '1', 
+      type: 'Entry',
+      contentType: { 
+        sys: { 
+          type: 'Link',
+          linkType: 'ContentType',
+          id: 'gallery' 
+        } 
+      },
+      space: {
+        sys: {
+          type: 'Link',
+          linkType: 'Space',
+          id: 'placeholder'
+        }
+      },
+      environment: {
+        sys: {
+          type: 'Link',
+          linkType: 'Environment',
+          id: 'master'
+        }
+      },
+      createdAt: '2024-01-15T00:00:00.000Z',
+      updatedAt: '2024-01-15T00:00:00.000Z',
+      revision: 1,
+      locale: 'en-US'
+    },
     fields: {
       title: 'Sunset at Sea',
       image: {
@@ -153,8 +229,35 @@ export const placeholderGalleryImages: GalleryImage[] = [
     }
   },
   {
-    sys: { id: '2', contentType: { sys: { id: 'gallery' } } },
-    contentTypeId: 'galleryImage',
+    sys: { 
+      id: '2', 
+      type: 'Entry',
+      contentType: { 
+        sys: { 
+          type: 'Link',
+          linkType: 'ContentType',
+          id: 'gallery' 
+        } 
+      },
+      space: {
+        sys: {
+          type: 'Link',
+          linkType: 'Space',
+          id: 'placeholder'
+        }
+      },
+      environment: {
+        sys: {
+          type: 'Link',
+          linkType: 'Environment',
+          id: 'master'
+        }
+      },
+      createdAt: '2024-01-15T00:00:00.000Z',
+      updatedAt: '2024-01-15T00:00:00.000Z',
+      revision: 1,
+      locale: 'en-US'
+    },
     fields: {
       title: 'Island Life',
       image: {
