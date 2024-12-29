@@ -124,23 +124,25 @@ const Blog = () => {
       )}
 
       <Dialog open={!!selectedPost} onOpenChange={() => setSelectedPost(null)}>
-        <DialogContent className="max-w-[95vw] max-h-[95vh] w-[95vw] overflow-y-auto">
+        <DialogContent className="max-w-4xl w-[95vw] max-h-[90vh] overflow-y-auto">
           {selectedPost && (
             <>
               <DialogHeader>
-                <DialogTitle>{selectedPost.fields.title}</DialogTitle>
+                <DialogTitle className="text-2xl">{selectedPost.fields.title}</DialogTitle>
                 <time className="text-sm text-gray-500 mt-2">
                   {format(new Date(selectedPost.fields.publishDate), 'MMMM d, yyyy')}
                 </time>
               </DialogHeader>
               {selectedPost.fields.featuredImage && (
-                <img
-                  src={selectedPost.fields.featuredImage.fields.file.url}
-                  alt={selectedPost.fields.title}
-                  className="w-full h-64 object-cover rounded-md my-4"
-                />
+                <div className="relative w-full max-h-[60vh] overflow-hidden rounded-md">
+                  <img
+                    src={selectedPost.fields.featuredImage.fields.file.url}
+                    alt={selectedPost.fields.title}
+                    className="w-full h-auto object-contain"
+                  />
+                </div>
               )}
-              <div className="text-gray-600">
+              <div className="prose prose-lg max-w-none">
                 {documentToReactComponents(selectedPost.fields.content)}
               </div>
             </>
