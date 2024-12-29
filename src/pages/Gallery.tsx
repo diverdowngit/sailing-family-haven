@@ -1,5 +1,5 @@
 import { useQuery } from "@tanstack/react-query";
-import { type GalleryImage, placeholderGalleryImages } from "@/lib/contentful";
+import { type GalleryImage, fetchGalleryImages } from "@/lib/contentful";
 import { Skeleton } from "@/components/ui/skeleton";
 import {
   Dialog,
@@ -11,9 +11,7 @@ const Gallery = () => {
   const [selectedImage, setSelectedImage] = useState<GalleryImage | null>(null);
   const { data: images, isLoading, error } = useQuery({
     queryKey: ["gallery-images"],
-    queryFn: async () => {
-      return placeholderGalleryImages;
-    },
+    queryFn: fetchGalleryImages,
   });
 
   if (error) {

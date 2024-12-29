@@ -1,5 +1,5 @@
 import { useQuery } from "@tanstack/react-query";
-import { type BlogPost, placeholderBlogPosts } from "@/lib/contentful";
+import { type BlogPost, fetchBlogPosts } from "@/lib/contentful";
 import { Skeleton } from "@/components/ui/skeleton";
 import { format } from "date-fns";
 import { useState } from "react";
@@ -15,9 +15,7 @@ const Blog = () => {
   const [selectedPost, setSelectedPost] = useState<BlogPost | null>(null);
   const { data: posts, isLoading, error } = useQuery({
     queryKey: ["blog-posts"],
-    queryFn: async () => {
-      return placeholderBlogPosts;
-    },
+    queryFn: fetchBlogPosts,
   });
 
   if (error) {

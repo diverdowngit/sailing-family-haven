@@ -1,8 +1,11 @@
 import { createClient } from 'contentful';
 
+const spaceId = localStorage.getItem('CONTENTFUL_SPACE_ID') || 'placeholder';
+const accessToken = localStorage.getItem('CONTENTFUL_ACCESS_TOKEN') || 'placeholder';
+
 export const contentfulClient = createClient({
-  space: 'placeholder',
-  accessToken: 'placeholder',
+  space: spaceId,
+  accessToken: accessToken,
 });
 
 export interface BlogPost {
@@ -50,6 +53,33 @@ export interface GalleryImage {
     };
   };
 }
+
+// Function to fetch blog posts from Contentful
+export const fetchBlogPosts = async (): Promise<BlogPost[]> => {
+  try {
+    const response = await contentfulClient.getEntries({
+      content_type: 'blogPost',
+      order: '-fields.publishDate',
+    });
+    return response.items as BlogPost[];
+  } catch (error) {
+    console.error('Error fetching blog posts:', error);
+    return placeholderBlogPosts;
+  }
+};
+
+// Function to fetch gallery images from Contentful
+export const fetchGalleryImages = async (): Promise<GalleryImage[]> => {
+  try {
+    const response = await contentfulClient.getEntries({
+      content_type: 'galleryImage',
+    });
+    return response.items as GalleryImage[];
+  } catch (error) {
+    console.error('Error fetching gallery images:', error);
+    return placeholderGalleryImages;
+  }
+};
 
 // Placeholder data for development
 export const placeholderBlogPosts: BlogPost[] = [
