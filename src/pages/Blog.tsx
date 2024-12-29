@@ -18,6 +18,7 @@ import {
   PaginationNext,
   PaginationPrevious,
 } from "@/components/ui/pagination";
+import { documentToReactComponents } from '@contentful/rich-text-react-renderer';
 
 const ITEMS_PER_PAGE = 10;
 
@@ -139,8 +140,8 @@ const Blog = () => {
                   className="w-full h-64 object-cover rounded-md my-4"
                 />
               )}
-              <div className="text-gray-600 whitespace-pre-wrap">
-                {selectedPost.fields.content}
+              <div className="text-gray-600">
+                {documentToReactComponents(selectedPost.fields.content)}
               </div>
             </>
           )}
