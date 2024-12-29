@@ -1,4 +1,5 @@
 import { createClient } from 'contentful';
+import { Document } from '@contentful/rich-text-types';
 
 const spaceId = localStorage.getItem('CONTENTFUL_SPACE_ID') || 'placeholder';
 const accessToken = localStorage.getItem('CONTENTFUL_ACCESS_TOKEN') || 'placeholder';
@@ -21,7 +22,7 @@ export interface BlogPost {
     title: string;
     slug: string;
     excerpt: string;
-    content: any;
+    content: Document;
     publishDate: string;
     featuredImage: {
       fields: {
@@ -57,11 +58,11 @@ export interface GalleryImage {
 // Function to fetch blog posts from Contentful
 export const fetchBlogPosts = async (): Promise<BlogPost[]> => {
   try {
-    const response = await contentfulClient.getEntries({
-      content_type: 'blogPost',
-      order: '-fields.publishDate',
+    const response = await contentfulClient.getEntries<BlogPost>({
+      content_type: 'blog',
+      order: ['-fields.publishDate'],
     });
-    return response.items as BlogPost[];
+    return response.items;
   } catch (error) {
     console.error('Error fetching blog posts:', error);
     return placeholderBlogPosts;
@@ -71,10 +72,10 @@ export const fetchBlogPosts = async (): Promise<BlogPost[]> => {
 // Function to fetch gallery images from Contentful
 export const fetchGalleryImages = async (): Promise<GalleryImage[]> => {
   try {
-    const response = await contentfulClient.getEntries({
+    const response = await contentfulClient.getEntries<GalleryImage>({
       content_type: 'galleryImage',
     });
-    return response.items as GalleryImage[];
+    return response.items;
   } catch (error) {
     console.error('Error fetching gallery images:', error);
     return placeholderGalleryImages;
