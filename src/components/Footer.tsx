@@ -1,4 +1,4 @@
-import { Facebook, Instagram, Twitter } from "lucide-react";
+import { Facebook, Instagram, CircleDollarSign } from "lucide-react";
 
 const Footer = () => {
   return (
@@ -31,7 +31,7 @@ const Footer = () => {
                 <Instagram />
               </a>
               <a href="#" className="text-white hover:text-coral transition-colors">
-                <Twitter />
+                <CircleDollarSign />
               </a>
             </div>
           </div>
