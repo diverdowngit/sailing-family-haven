@@ -1,11 +1,11 @@
 import { contentfulClient } from './client';
-import type { BlogPost, BlogPostFields, GalleryImage, GalleryImageFields } from './types';
+import type { BlogPost, GalleryImage, BlogPostSkeleton, GalleryImageSkeleton } from './types';
 import { placeholderBlogPosts, placeholderGalleryImages } from './placeholders';
 
 // Function to fetch blog posts from Contentful
 export const fetchBlogPosts = async (): Promise<BlogPost[]> => {
   try {
-    const response = await contentfulClient.getEntries<BlogPostFields>({
+    const response = await contentfulClient.getEntries<BlogPostSkeleton>({
       content_type: 'blog',
       order: ['-fields.publishDate'],
     });
@@ -19,7 +19,7 @@ export const fetchBlogPosts = async (): Promise<BlogPost[]> => {
 // Function to fetch gallery images from Contentful
 export const fetchGalleryImages = async (): Promise<GalleryImage[]> => {
   try {
-    const response = await contentfulClient.getEntries<GalleryImageFields>({
+    const response = await contentfulClient.getEntries<GalleryImageSkeleton>({
       content_type: 'gallery',
     });
     return response.items;

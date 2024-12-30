@@ -94,7 +94,7 @@ const Blog = () => {
                     {format(new Date(post.fields.publishDate), 'MMMM d, yyyy')}
                   </time>
                   <div className="text-gray-600 mb-4">
-                    {post.fields.excerpt}...
+                    {post.fields.excerpt}
                   </div>
                   <Button
                     variant="ghost"

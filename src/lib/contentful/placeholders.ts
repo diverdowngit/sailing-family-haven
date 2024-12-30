@@ -8,6 +8,21 @@ export const placeholderBlogPosts: BlogPost[] = [
       createdAt: '2024-01-15T00:00:00.000Z',
       updatedAt: '2024-01-15T00:00:00.000Z',
       locale: 'en-US',
+      revision: 1,
+      space: {
+        sys: {
+          type: 'Link',
+          linkType: 'Space',
+          id: 'placeholder'
+        }
+      },
+      environment: {
+        sys: {
+          type: 'Link',
+          linkType: 'Environment',
+          id: 'master'
+        }
+      },
       contentType: {
         sys: {
           id: 'blog',
@@ -42,11 +57,19 @@ export const placeholderBlogPosts: BlogPost[] = [
           createdAt: '2024-01-15T00:00:00.000Z',
           updatedAt: '2024-01-15T00:00:00.000Z',
           locale: 'en-US',
-          contentType: {
+          revision: 1,
+          space: {
             sys: {
               type: 'Link',
-              linkType: 'ContentType',
-              id: 'asset'
+              linkType: 'Space',
+              id: 'placeholder'
+            }
+          },
+          environment: {
+            sys: {
+              type: 'Link',
+              linkType: 'Environment',
+              id: 'master'
             }
           }
         },
@@ -58,7 +81,8 @@ export const placeholderBlogPosts: BlogPost[] = [
             fileName: 'placeholder.jpg',
             contentType: 'image/jpeg'
           }
-        }
+        },
+        metadata: { tags: [] }
       }
     },
     metadata: { tags: [] }
@@ -73,6 +97,21 @@ export const placeholderGalleryImages: GalleryImage[] = [
       createdAt: '2024-01-15T00:00:00.000Z',
       updatedAt: '2024-01-15T00:00:00.000Z',
       locale: 'en-US',
+      revision: 1,
+      space: {
+        sys: {
+          type: 'Link',
+          linkType: 'Space',
+          id: 'placeholder'
+        }
+      },
+      environment: {
+        sys: {
+          type: 'Link',
+          linkType: 'Environment',
+          id: 'master'
+        }
+      },
       contentType: {
         sys: {
           id: 'gallery',
@@ -90,11 +129,19 @@ export const placeholderGalleryImages: GalleryImage[] = [
           createdAt: '2024-01-15T00:00:00.000Z',
           updatedAt: '2024-01-15T00:00:00.000Z',
           locale: 'en-US',
-          contentType: {
+          revision: 1,
+          space: {
             sys: {
               type: 'Link',
-              linkType: 'ContentType',
-              id: 'asset'
+              linkType: 'Space',
+              id: 'placeholder'
+            }
+          },
+          environment: {
+            sys: {
+              type: 'Link',
+              linkType: 'Environment',
+              id: 'master'
             }
           }
         },
@@ -106,7 +153,8 @@ export const placeholderGalleryImages: GalleryImage[] = [
             fileName: 'placeholder.jpg',
             contentType: 'image/jpeg'
           }
-        }
+        },
+        metadata: { tags: [] }
       }
     },
     metadata: { tags: [] }
