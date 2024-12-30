@@ -6,6 +6,21 @@ const createBaseSys = (id: string, contentTypeId: string) => ({
   createdAt: new Date().toISOString(),
   updatedAt: new Date().toISOString(),
   locale: 'en-US',
+  revision: 1,
+  space: {
+    sys: {
+      type: 'Link',
+      linkType: 'Space',
+      id: 'placeholder'
+    }
+  },
+  environment: {
+    sys: {
+      type: 'Link',
+      linkType: 'Environment',
+      id: 'master'
+    }
+  },
   contentType: {
     sys: {
       type: 'Link',
@@ -116,24 +131,7 @@ export const placeholderBlogPosts: BlogPost[] = [
 
 export const placeholderGalleryImages: GalleryImage[] = [
   {
-    sys: {
-      ...createBaseSys('1', 'gallery'),
-      space: {
-        sys: {
-          type: 'Link',
-          linkType: 'Space',
-          id: 'placeholder'
-        }
-      },
-      environment: {
-        sys: {
-          type: 'Link',
-          linkType: 'Environment',
-          id: 'master'
-        }
-      },
-      revision: 1,
-    },
+    sys: createBaseSys('1', 'galleryImage'),
     fields: {
       title: 'Sunset at Sea',
       image: {
@@ -147,24 +145,7 @@ export const placeholderGalleryImages: GalleryImage[] = [
     metadata: { tags: [] }
   },
   {
-    sys: {
-      ...createBaseSys('2', 'gallery'),
-      space: {
-        sys: {
-          type: 'Link',
-          linkType: 'Space',
-          id: 'placeholder'
-        }
-      },
-      environment: {
-        sys: {
-          type: 'Link',
-          linkType: 'Environment',
-          id: 'master'
-        }
-      },
-      revision: 1,
-    },
+    sys: createBaseSys('2', 'galleryImage'),
     fields: {
       title: 'Island Life',
       image: {

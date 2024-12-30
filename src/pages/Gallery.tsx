@@ -1,11 +1,9 @@
 import { useQuery } from "@tanstack/react-query";
 import { type GalleryImage, fetchGalleryImages } from "@/lib/contentful";
 import { Skeleton } from "@/components/ui/skeleton";
-import {
-  Dialog,
-  DialogContent,
-} from "@/components/ui/dialog";
+import { Dialog, DialogContent } from "@/components/ui/dialog";
 import { useState } from "react";
+import { ContentfulCredentials } from "@/components/ContentfulCredentials";
 import {
   Pagination,
   PaginationContent,
@@ -26,10 +24,23 @@ const Gallery = () => {
     queryFn: fetchGalleryImages,
   });
 
+  const hasCredentials = localStorage.getItem('CONTENTFUL_SPACE_ID') && 
+                        localStorage.getItem('CONTENTFUL_ACCESS_TOKEN');
+
+  if (!hasCredentials) {
+    return (
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+        <h1 className="text-4xl font-bold text-navy mb-8">Setup Contentful</h1>
+        <ContentfulCredentials />
+      </div>
+    );
+  }
+
   if (error) {
     return (
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
-        <p className="text-red-500">Error loading gallery images. Please try again later.</p>
+        <p className="text-red-500">Error loading gallery images. Please verify your Contentful credentials.</p>
+        <ContentfulCredentials />
       </div>
     );
   }
@@ -104,7 +115,7 @@ const Gallery = () => {
       )}
 
       <Dialog open={!!selectedImage} onOpenChange={() => setSelectedImage(null)}>
-        <DialogContent className="max-w-[75vw] max-h-[75vh]">
+        <DialogContent className="max-w-[90vw] max-h-[90vh]">
           {selectedImage?.fields.image && (
             <div className="relative">
               <img
