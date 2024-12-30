@@ -1,17 +1,24 @@
 import type { BlogPost, GalleryImage } from './types';
 
+const createBaseSys = (id: string, contentTypeId: string) => ({
+  id,
+  type: 'Entry',
+  createdAt: new Date().toISOString(),
+  updatedAt: new Date().toISOString(),
+  locale: 'en-US',
+  contentType: {
+    sys: {
+      type: 'Link',
+      linkType: 'ContentType',
+      id: contentTypeId,
+    },
+  },
+});
+
 export const placeholderBlogPosts: BlogPost[] = [
   {
-    sys: { 
-      id: '1', 
-      type: 'Entry',
-      contentType: { 
-        sys: { 
-          type: 'Link',
-          linkType: 'ContentType',
-          id: 'blog' 
-        } 
-      },
+    sys: {
+      ...createBaseSys('1', 'blog'),
       space: {
         sys: {
           type: 'Link',
@@ -26,11 +33,7 @@ export const placeholderBlogPosts: BlogPost[] = [
           id: 'master'
         }
       },
-      createdAt: '2024-01-15T00:00:00.000Z',
-      updatedAt: '2024-01-15T00:00:00.000Z',
       revision: 1,
-      locale: 'en-US',
-      metadata: { tags: [] }
     },
     fields: {
       title: 'Our First Sailing Adventure',
@@ -58,19 +61,12 @@ export const placeholderBlogPosts: BlogPost[] = [
           }
         }
       }
-    }
+    },
+    metadata: { tags: [] }
   },
   {
-    sys: { 
-      id: '2', 
-      type: 'Entry',
-      contentType: { 
-        sys: { 
-          type: 'Link',
-          linkType: 'ContentType',
-          id: 'blog' 
-        } 
-      },
+    sys: {
+      ...createBaseSys('2', 'blog'),
       space: {
         sys: {
           type: 'Link',
@@ -85,11 +81,7 @@ export const placeholderBlogPosts: BlogPost[] = [
           id: 'master'
         }
       },
-      createdAt: '2024-01-10T00:00:00.000Z',
-      updatedAt: '2024-01-10T00:00:00.000Z',
       revision: 1,
-      locale: 'en-US',
-      metadata: { tags: [] }
     },
     fields: {
       title: 'Life at Sea',
@@ -117,22 +109,15 @@ export const placeholderBlogPosts: BlogPost[] = [
           }
         }
       }
-    }
+    },
+    metadata: { tags: [] }
   }
 ];
 
 export const placeholderGalleryImages: GalleryImage[] = [
   {
-    sys: { 
-      id: '1', 
-      type: 'Entry',
-      contentType: { 
-        sys: { 
-          type: 'Link',
-          linkType: 'ContentType',
-          id: 'gallery' 
-        } 
-      },
+    sys: {
+      ...createBaseSys('1', 'gallery'),
       space: {
         sys: {
           type: 'Link',
@@ -147,11 +132,7 @@ export const placeholderGalleryImages: GalleryImage[] = [
           id: 'master'
         }
       },
-      createdAt: '2024-01-15T00:00:00.000Z',
-      updatedAt: '2024-01-15T00:00:00.000Z',
       revision: 1,
-      locale: 'en-US',
-      metadata: { tags: [] }
     },
     fields: {
       title: 'Sunset at Sea',
@@ -162,19 +143,12 @@ export const placeholderGalleryImages: GalleryImage[] = [
           }
         }
       }
-    }
+    },
+    metadata: { tags: [] }
   },
   {
-    sys: { 
-      id: '2', 
-      type: 'Entry',
-      contentType: { 
-        sys: { 
-          type: 'Link',
-          linkType: 'ContentType',
-          id: 'gallery' 
-        } 
-      },
+    sys: {
+      ...createBaseSys('2', 'gallery'),
       space: {
         sys: {
           type: 'Link',
@@ -189,11 +163,7 @@ export const placeholderGalleryImages: GalleryImage[] = [
           id: 'master'
         }
       },
-      createdAt: '2024-01-15T00:00:00.000Z',
-      updatedAt: '2024-01-15T00:00:00.000Z',
       revision: 1,
-      locale: 'en-US',
-      metadata: { tags: [] }
     },
     fields: {
       title: 'Island Life',
@@ -204,6 +174,7 @@ export const placeholderGalleryImages: GalleryImage[] = [
           }
         }
       }
-    }
+    },
+    metadata: { tags: [] }
   }
 ];
