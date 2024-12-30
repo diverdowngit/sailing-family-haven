@@ -1,54 +1,20 @@
 import type { BlogPost, GalleryImage } from './types';
 
-const createBaseSys = (id: string, contentTypeId: string) => ({
-  id,
-  type: 'Entry',
-  createdAt: new Date().toISOString(),
-  updatedAt: new Date().toISOString(),
-  locale: 'en-US',
-  revision: 1,
-  space: {
-    sys: {
-      type: 'Link',
-      linkType: 'Space',
-      id: 'placeholder'
-    }
-  },
-  environment: {
-    sys: {
-      type: 'Link',
-      linkType: 'Environment',
-      id: 'master'
-    }
-  },
-  contentType: {
-    sys: {
-      type: 'Link',
-      linkType: 'ContentType',
-      id: contentTypeId,
-    },
-  },
-});
-
 export const placeholderBlogPosts: BlogPost[] = [
   {
     sys: {
-      ...createBaseSys('1', 'blog'),
-      space: {
+      id: '1',
+      type: 'Entry',
+      createdAt: '2024-01-15T00:00:00.000Z',
+      updatedAt: '2024-01-15T00:00:00.000Z',
+      locale: 'en-US',
+      contentType: {
         sys: {
+          id: 'blog',
           type: 'Link',
-          linkType: 'Space',
-          id: 'placeholder'
+          linkType: 'ContentType'
         }
-      },
-      environment: {
-        sys: {
-          type: 'Link',
-          linkType: 'Environment',
-          id: 'master'
-        }
-      },
-      revision: 1,
+      }
     },
     fields: {
       title: 'Our First Sailing Adventure',
@@ -70,57 +36,27 @@ export const placeholderBlogPosts: BlogPost[] = [
       },
       publishDate: '2024-01-15',
       featuredImage: {
-        fields: {
-          file: {
-            url: 'https://images.unsplash.com/photo-1488590528505-98d2b5aba04b'
+        sys: {
+          id: 'placeholder1',
+          type: 'Asset',
+          createdAt: '2024-01-15T00:00:00.000Z',
+          updatedAt: '2024-01-15T00:00:00.000Z',
+          locale: 'en-US',
+          contentType: {
+            sys: {
+              type: 'Link',
+              linkType: 'ContentType',
+              id: 'asset'
+            }
           }
-        }
-      }
-    },
-    metadata: { tags: [] }
-  },
-  {
-    sys: {
-      ...createBaseSys('2', 'blog'),
-      space: {
-        sys: {
-          type: 'Link',
-          linkType: 'Space',
-          id: 'placeholder'
-        }
-      },
-      environment: {
-        sys: {
-          type: 'Link',
-          linkType: 'Environment',
-          id: 'master'
-        }
-      },
-      revision: 1,
-    },
-    fields: {
-      title: 'Life at Sea',
-      slug: 'life-at-sea',
-      excerpt: 'Discovering the joys and challenges of living on a sailboat.',
-      content: {
-        nodeType: 'document',
-        data: {},
-        content: [{
-          nodeType: 'paragraph',
-          data: {},
-          content: [{
-            nodeType: 'text',
-            value: 'Lorem ipsum dolor sit amet...',
-            marks: [],
-            data: {}
-          }]
-        }]
-      },
-      publishDate: '2024-01-10',
-      featuredImage: {
+        },
         fields: {
+          title: 'Placeholder Image',
           file: {
-            url: 'https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d'
+            url: 'https://images.unsplash.com/photo-1488590528505-98d2b5aba04b',
+            details: { size: 1234, image: { width: 1920, height: 1080 } },
+            fileName: 'placeholder.jpg',
+            contentType: 'image/jpeg'
           }
         }
       }
@@ -131,27 +67,44 @@ export const placeholderBlogPosts: BlogPost[] = [
 
 export const placeholderGalleryImages: GalleryImage[] = [
   {
-    sys: createBaseSys('1', 'galleryImage'),
-    fields: {
-      title: 'Sunset at Sea',
-      image: {
-        fields: {
-          file: {
-            url: 'https://images.unsplash.com/photo-1649972904349-6e44c42644a7'
-          }
+    sys: {
+      id: '1',
+      type: 'Entry',
+      createdAt: '2024-01-15T00:00:00.000Z',
+      updatedAt: '2024-01-15T00:00:00.000Z',
+      locale: 'en-US',
+      contentType: {
+        sys: {
+          id: 'gallery',
+          type: 'Link',
+          linkType: 'ContentType'
         }
       }
     },
-    metadata: { tags: [] }
-  },
-  {
-    sys: createBaseSys('2', 'galleryImage'),
     fields: {
-      title: 'Island Life',
+      title: 'Sunset at Sea',
       image: {
+        sys: {
+          id: 'placeholder1',
+          type: 'Asset',
+          createdAt: '2024-01-15T00:00:00.000Z',
+          updatedAt: '2024-01-15T00:00:00.000Z',
+          locale: 'en-US',
+          contentType: {
+            sys: {
+              type: 'Link',
+              linkType: 'ContentType',
+              id: 'asset'
+            }
+          }
+        },
         fields: {
+          title: 'Placeholder Image',
           file: {
-            url: 'https://images.unsplash.com/photo-1518770660439-4636190af475'
+            url: 'https://images.unsplash.com/photo-1649972904349-6e44c42644a7',
+            details: { size: 1234, image: { width: 1920, height: 1080 } },
+            fileName: 'placeholder.jpg',
+            contentType: 'image/jpeg'
           }
         }
       }

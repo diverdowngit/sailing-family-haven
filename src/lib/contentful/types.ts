@@ -1,98 +1,19 @@
 import { Document } from '@contentful/rich-text-types';
-import type { Entry, EntryFields, EntrySkeletonType } from 'contentful';
+import type { Entry, EntrySkeletonType, Asset } from 'contentful';
 
-export interface BlogPostFields extends EntrySkeletonType {
+export interface BlogPostFields {
   title: string;
   slug: string;
   excerpt: string;
   content: Document;
   publishDate: string;
-  featuredImage: {
-    fields: {
-      file: {
-        url: string;
-      };
-    };
-  };
+  featuredImage: Asset;
 }
 
-export interface GalleryImageFields extends EntrySkeletonType {
+export interface GalleryImageFields {
   title: string;
-  image: {
-    fields: {
-      file: {
-        url: string;
-      };
-    };
-  };
+  image: Asset;
 }
 
-export interface BlogPost extends Entry<BlogPostFields> {
-  sys: {
-    id: string;
-    type: string;
-    createdAt: string;
-    updatedAt: string;
-    locale: string;
-    revision: number;
-    space: {
-      sys: {
-        type: string;
-        linkType: string;
-        id: string;
-      };
-    };
-    environment: {
-      sys: {
-        type: string;
-        linkType: string;
-        id: string;
-      };
-    };
-    contentType: {
-      sys: {
-        id: string;
-        type: string;
-        linkType: string;
-      };
-    };
-  };
-  metadata: {
-    tags: [];
-  };
-}
-
-export interface GalleryImage extends Entry<GalleryImageFields> {
-  sys: {
-    id: string;
-    type: string;
-    createdAt: string;
-    updatedAt: string;
-    locale: string;
-    revision: number;
-    space: {
-      sys: {
-        type: string;
-        linkType: string;
-        id: string;
-      };
-    };
-    environment: {
-      sys: {
-        type: string;
-        linkType: string;
-        id: string;
-      };
-    };
-    contentType: {
-      sys: {
-        id: string;
-        type: string;
-        linkType: string;
-      };
-    };
-  };
-  metadata: {
-    tags: [];
-  };
-}
+export type BlogPost = Entry<BlogPostFields>;
+export type GalleryImage = Entry<GalleryImageFields>;

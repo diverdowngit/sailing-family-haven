@@ -1,5 +1,5 @@
 import { useQuery } from "@tanstack/react-query";
-import { type GalleryImage, fetchGalleryImages } from "@/lib/contentful";
+import { fetchGalleryImages } from "@/lib/contentful/api";
 import { Skeleton } from "@/components/ui/skeleton";
 import { Dialog, DialogContent } from "@/components/ui/dialog";
 import { useState } from "react";
@@ -12,6 +12,7 @@ import {
   PaginationNext,
   PaginationPrevious,
 } from "@/components/ui/pagination";
+import type { GalleryImage } from "@/lib/contentful/types";
 
 const ITEMS_PER_PAGE = 10;
 
@@ -71,7 +72,7 @@ const Gallery = () => {
                   <>
                     <img
                       src={image.fields.image.fields.file.url}
-                      alt={image.fields.title}
+                      alt={image.fields.title || 'Gallery image'}
                       className="w-full h-full object-cover transform transition-transform duration-300 group-hover:scale-110"
                     />
                     <div className="absolute inset-0 bg-black bg-opacity-40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end justify-center p-4">
@@ -120,7 +121,7 @@ const Gallery = () => {
             <div className="relative">
               <img
                 src={selectedImage.fields.image.fields.file.url}
-                alt={selectedImage.fields.title}
+                alt={selectedImage.fields.title || 'Gallery image'}
                 className="w-full h-full object-contain"
               />
               <div className="absolute bottom-0 left-0 right-0 bg-black bg-opacity-50 p-4">
