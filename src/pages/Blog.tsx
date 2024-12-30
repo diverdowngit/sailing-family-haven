@@ -4,6 +4,7 @@ import { Skeleton } from "@/components/ui/skeleton";
 import { format } from "date-fns";
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
+import { ContentfulCredentials } from "@/components/ContentfulCredentials";
 import {
   Dialog,
   DialogContent,
@@ -31,10 +32,23 @@ const Blog = () => {
     queryFn: fetchBlogPosts,
   });
 
+  const hasCredentials = localStorage.getItem('CONTENTFUL_SPACE_ID') && 
+                        localStorage.getItem('CONTENTFUL_ACCESS_TOKEN');
+
+  if (!hasCredentials) {
+    return (
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+        <h1 className="text-4xl font-bold text-navy mb-8">Setup Contentful</h1>
+        <ContentfulCredentials />
+      </div>
+    );
+  }
+
   if (error) {
     return (
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
-        <p className="text-red-500">Error loading blog posts. Please try again later.</p>
+        <p className="text-red-500">Error loading blog posts. Please verify your Contentful credentials.</p>
+        <ContentfulCredentials />
       </div>
     );
   }
