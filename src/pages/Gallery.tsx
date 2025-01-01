@@ -1,7 +1,7 @@
 import { useQuery } from "@tanstack/react-query";
 import { fetchGalleryImages } from "@/lib/contentful/api";
 import { Skeleton } from "@/components/ui/skeleton";
-import { Dialog, DialogContent } from "@/components/ui/dialog";
+import { Dialog, DialogContent, DialogTitle } from "@/components/ui/dialog";
 import { useState } from "react";
 import { ContentfulCredentials } from "@/components/ContentfulCredentials";
 import {
@@ -117,6 +117,9 @@ const Gallery = () => {
 
       <Dialog open={!!selectedImage} onOpenChange={() => setSelectedImage(null)}>
         <DialogContent className="max-w-[90vw] max-h-[90vh]">
+          <DialogTitle className="sr-only">
+            {selectedImage?.fields.title || 'Gallery Image'}
+          </DialogTitle>
           {selectedImage?.fields.image && (
             <div className="relative">
               <img

@@ -7,7 +7,7 @@ export const fetchBlogPosts = async (): Promise<BlogPost[]> => {
   try {
     const response = await contentfulClient.getEntries<BlogPostSkeleton>({
       content_type: 'blog',
-      order: ['-fields.publishDate'],
+      order: ['sys.createdAt'],
     });
     return response.items;
   } catch (error) {

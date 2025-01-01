@@ -1,7 +1,7 @@
 import { Document } from '@contentful/rich-text-types';
 import type { Entry, Asset, EntrySkeletonType } from 'contentful';
 
-interface BlogPostSkeleton extends EntrySkeletonType {
+export interface BlogPostSkeleton extends EntrySkeletonType {
   contentTypeId: 'blog'
   fields: {
     title: string;
@@ -13,7 +13,7 @@ interface BlogPostSkeleton extends EntrySkeletonType {
   }
 }
 
-interface GalleryImageSkeleton extends EntrySkeletonType {
+export interface GalleryImageSkeleton extends EntrySkeletonType {
   contentTypeId: 'gallery'
   fields: {
     title: string;
@@ -23,5 +23,3 @@ interface GalleryImageSkeleton extends EntrySkeletonType {
 
 export type BlogPost = Entry<BlogPostSkeleton['fields']>;
 export type GalleryImage = Entry<GalleryImageSkeleton['fields']>;
-
-export type { BlogPostSkeleton, GalleryImageSkeleton };
