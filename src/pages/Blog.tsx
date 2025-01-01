@@ -1,10 +1,9 @@
 import { useQuery } from "@tanstack/react-query";
-import { type BlogPost, fetchBlogPosts } from "@/lib/contentful";
+import { fetchBlogPosts } from "@/lib/contentful/api";
 import { Skeleton } from "@/components/ui/skeleton";
 import { format } from "date-fns";
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
-import { ContentfulCredentials } from "@/components/ContentfulCredentials";
 import {
   Dialog,
   DialogContent,
@@ -20,6 +19,7 @@ import {
   PaginationPrevious,
 } from "@/components/ui/pagination";
 import { documentToReactComponents } from '@contentful/rich-text-react-renderer';
+import type { BlogPost } from "@/lib/contentful/types";
 
 const ITEMS_PER_PAGE = 10;
 
@@ -32,23 +32,10 @@ const Blog = () => {
     queryFn: fetchBlogPosts,
   });
 
-  const hasCredentials = localStorage.getItem('CONTENTFUL_SPACE_ID') && 
-                        localStorage.getItem('CONTENTFUL_ACCESS_TOKEN');
-
-  if (!hasCredentials) {
-    return (
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
-        <h1 className="text-4xl font-bold text-navy mb-8">Setup Contentful</h1>
-        <ContentfulCredentials />
-      </div>
-    );
-  }
-
   if (error) {
     return (
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
-        <p className="text-red-500">Error loading blog posts. Please verify your Contentful credentials.</p>
-        <ContentfulCredentials />
+        <p className="text-red-500">Error loading blog posts.</p>
       </div>
     );
   }
