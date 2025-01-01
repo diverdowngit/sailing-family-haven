@@ -7,13 +7,15 @@ interface GalleryImageModalProps {
 }
 
 export const GalleryImageModal = ({ image, onClose }: GalleryImageModalProps) => {
+  if (!image?.fields) return null;
+
   return (
     <Dialog open={!!image} onOpenChange={onClose}>
       <DialogContent className="max-w-[90vw] max-h-[90vh]">
         <DialogTitle className="sr-only">
-          {image?.fields.title || 'Gallery Image'}
+          {image.fields.title || 'Gallery Image'}
         </DialogTitle>
-        {image?.fields.image && (
+        {image.fields.image && (
           <div className="relative">
             <img
               src={image.fields.image.fields.file.url}
