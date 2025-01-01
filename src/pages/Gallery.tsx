@@ -17,7 +17,7 @@ import type { GalleryImage } from "@/lib/contentful/types";
 
 const ITEMS_PER_PAGE = 12;
 
-export default function Gallery() {
+const Gallery = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const [selectedImage, setSelectedImage] = useState<GalleryImage | null>(null);
 
