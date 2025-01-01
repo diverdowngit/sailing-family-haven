@@ -1,8 +1,7 @@
 import { createClient } from 'contentful';
 
-// Replace these with your actual Contentful credentials
-const spaceId = 'your-space-id';
-const accessToken = 'your-access-token';
+const spaceId = localStorage.getItem('CONTENTFUL_SPACE_ID') || 'placeholder';
+const accessToken = localStorage.getItem('CONTENTFUL_ACCESS_TOKEN') || 'placeholder';
 
 export const contentfulClient = createClient({
   space: spaceId,

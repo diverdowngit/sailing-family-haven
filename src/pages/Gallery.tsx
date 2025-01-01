@@ -1,33 +1,39 @@
 import { useQuery } from "@tanstack/react-query";
-import { fetchGalleryImages } from "@/lib/contentful/api";
 import { Skeleton } from "@/components/ui/skeleton";
 import { Dialog, DialogContent, DialogTitle } from "@/components/ui/dialog";
 import { useState } from "react";
+import { ContentfulCredentials } from "@/components/ContentfulCredentials";
 import {
   Pagination,
   PaginationContent,
+  PaginationEllipsis,
   PaginationItem,
   PaginationLink,
   PaginationNext,
   PaginationPrevious,
 } from "@/components/ui/pagination";
+import { fetchGalleryImages } from "@/lib/contentful/api";
 import type { GalleryImage } from "@/lib/contentful/types";
 
-const ITEMS_PER_PAGE = 10;
+const ITEMS_PER_PAGE = 12;
 
-const Gallery = () => {
-  const [selectedImage, setSelectedImage] = useState<GalleryImage | null>(null);
+export default function Gallery() {
   const [currentPage, setCurrentPage] = useState(1);
-  
+  const [selectedImage, setSelectedImage] = useState<GalleryImage | null>(null);
+
   const { data: images, isLoading, error } = useQuery({
-    queryKey: ["gallery-images"],
+    queryKey: ['gallery-images'],
     queryFn: fetchGalleryImages,
   });
 
-  if (error) {
+  const hasCredentials = localStorage.getItem('CONTENTFUL_SPACE_ID') && 
+                        localStorage.getItem('CONTENTFUL_ACCESS_TOKEN');
+
+  if (!hasCredentials) {
     return (
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
-        <p className="text-red-500">Error loading gallery images.</p>
+        <h1 className="text-4xl font-bold text-navy mb-8">Setup Contentful</h1>
+        <ContentfulCredentials />
       </div>
     );
   }
