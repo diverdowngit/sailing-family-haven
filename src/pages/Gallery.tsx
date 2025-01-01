@@ -1,6 +1,5 @@
 import { useQuery } from "@tanstack/react-query";
 import { useState } from "react";
-import { ContentfulCredentials } from "@/components/ContentfulCredentials";
 import {
   Pagination,
   PaginationContent,
@@ -24,18 +23,6 @@ const Gallery = () => {
     queryKey: ['gallery-images'],
     queryFn: fetchGalleryImages,
   });
-
-  const hasCredentials = localStorage.getItem('CONTENTFUL_SPACE_ID') && 
-                        localStorage.getItem('CONTENTFUL_ACCESS_TOKEN');
-
-  if (!hasCredentials) {
-    return (
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
-        <h1 className="text-4xl font-bold text-navy mb-8">Setup Contentful</h1>
-        <ContentfulCredentials />
-      </div>
-    );
-  }
 
   const totalImages = images?.length || 0;
   const totalPages = Math.ceil(totalImages / ITEMS_PER_PAGE);
