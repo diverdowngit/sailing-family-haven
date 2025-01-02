@@ -15,15 +15,5 @@ export interface GalleryImageFields {
   image: Asset;
 }
 
-export interface BlogPostSkeleton {
-  contentTypeId: 'blog';
-  fields: BlogPostFields;
-}
-
-export interface GalleryImageSkeleton {
-  contentTypeId: 'gallery';
-  fields: GalleryImageFields;
-}
-
 export type BlogPost = Entry<BlogPostFields>;
 export type GalleryImage = Entry<GalleryImageFields>;

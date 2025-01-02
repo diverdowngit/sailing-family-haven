@@ -4,7 +4,6 @@ import { Skeleton } from "@/components/ui/skeleton";
 import { format } from "date-fns";
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
-import { ContentfulCredentials } from "@/components/ContentfulCredentials";
 import {
   Dialog,
   DialogContent,
@@ -13,7 +12,6 @@ import {
 import {
   Pagination,
   PaginationContent,
-  PaginationEllipsis,
   PaginationItem,
   PaginationLink,
   PaginationNext,
@@ -33,18 +31,6 @@ export default function Blog() {
     queryFn: fetchBlogPosts,
   });
 
-  const hasCredentials = localStorage.getItem('CONTENTFUL_SPACE_ID') && 
-                        localStorage.getItem('CONTENTFUL_ACCESS_TOKEN');
-
-  if (!hasCredentials) {
-    return (
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
-        <h1 className="text-4xl font-bold text-navy mb-8">Setup Contentful</h1>
-        <ContentfulCredentials />
-      </div>
-    );
-  }
-
   if (isLoading) {
     return (
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
@@ -63,8 +49,8 @@ export default function Blog() {
     );
   }
 
-  const totalPages = Math.ceil(posts.length / ITEMS_PER_PAGE);
-  const paginatedPosts = posts.slice((currentPage - 1) * ITEMS_PER_PAGE, currentPage * ITEMS_PER_PAGE);
+  const totalPages = Math.ceil((posts?.length || 0) / ITEMS_PER_PAGE);
+  const paginatedPosts = posts?.slice((currentPage - 1) * ITEMS_PER_PAGE, currentPage * ITEMS_PER_PAGE) || [];
 
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
@@ -79,19 +65,38 @@ export default function Blog() {
           </div>
         ))}
       </div>
-      <Pagination>
-        <PaginationPrevious onClick={() => setCurrentPage((prev) => Math.max(prev - 1, 1))} />
-        {Array.from({ length: totalPages }, (_, index) => (
-          <PaginationItem key={index} onClick={() => setCurrentPage(index + 1)}>
-            {index + 1}
-          </PaginationItem>
-        ))}
-        <PaginationNext onClick={() => setCurrentPage((prev) => Math.min(prev + 1, totalPages))} />
-      </Pagination>
+      {totalPages > 1 && (
+        <Pagination>
+          <PaginationContent>
+            <PaginationPrevious 
+              onClick={() => setCurrentPage((prev) => Math.max(prev - 1, 1))}
+              className={currentPage === 1 ? 'pointer-events-none opacity-50' : ''}
+            />
+            {Array.from({ length: totalPages }).map((_, i) => (
+              <PaginationItem key={i}>
+                <PaginationLink
+                  onClick={() => setCurrentPage(i + 1)}
+                  isActive={currentPage === i + 1}
+                >
+                  {i + 1}
+                </PaginationLink>
+              </PaginationItem>
+            ))}
+            <PaginationNext
+              onClick={() => setCurrentPage((prev) => Math.min(prev + 1, totalPages))}
+              className={currentPage === totalPages ? 'pointer-events-none opacity-50' : ''}
+            />
+          </PaginationContent>
+        </Pagination>
+      )}
       <Dialog open={!!selectedPost} onOpenChange={() => setSelectedPost(null)}>
         <DialogContent>
-          <DialogTitle>{selectedPost?.fields.title}</DialogTitle>
-          <div>{documentToReactComponents(selectedPost?.fields.content)}</div>
+          {selectedPost && (
+            <>
+              <DialogTitle>{selectedPost.fields.title}</DialogTitle>
+              <div>{documentToReactComponents(selectedPost.fields.content)}</div>
+            </>
+          )}
         </DialogContent>
       </Dialog>
     </div>
