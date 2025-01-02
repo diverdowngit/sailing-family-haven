@@ -55,18 +55,25 @@ export default function Blog() {
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
       <h1 className="text-4xl font-bold text-navy mb-8">Blog</h1>
-      <div className="space-y-4">
+      <div className="space-y-8">
         {paginatedPosts.map((post) => (
-          <div key={post.sys.id} className="border-b pb-4">
-            <h2 className="text-2xl font-semibold">{post.fields.title}</h2>
-            <p className="text-gray-600">{format(new Date(post.fields.publishDate), 'MMMM d, yyyy')}</p>
-            <div>{documentToReactComponents(post.fields.content)}</div>
+          <div key={post.sys.id} className="border rounded-lg p-6 shadow-sm">
+            {post.fields.featuredImage && (
+              <img
+                src={post.fields.featuredImage.fields.file.url}
+                alt={post.fields.title}
+                className="w-full h-64 object-cover rounded-lg mb-4"
+              />
+            )}
+            <h2 className="text-2xl font-semibold mb-2">{post.fields.title}</h2>
+            <p className="text-gray-600 mb-2">{format(new Date(post.fields.publishDate), 'MMMM d, yyyy')}</p>
+            <div className="prose max-w-none mb-4">{documentToReactComponents(post.fields.content)}</div>
             <Button onClick={() => setSelectedPost(post)}>Read More</Button>
           </div>
         ))}
       </div>
       {totalPages > 1 && (
-        <Pagination>
+        <Pagination className="mt-8">
           <PaginationContent>
             <PaginationPrevious 
               onClick={() => setCurrentPage((prev) => Math.max(prev - 1, 1))}
@@ -90,11 +97,18 @@ export default function Blog() {
         </Pagination>
       )}
       <Dialog open={!!selectedPost} onOpenChange={() => setSelectedPost(null)}>
-        <DialogContent>
+        <DialogContent className="max-w-3xl">
           {selectedPost && (
             <>
               <DialogTitle>{selectedPost.fields.title}</DialogTitle>
-              <div>{documentToReactComponents(selectedPost.fields.content)}</div>
+              {selectedPost.fields.featuredImage && (
+                <img
+                  src={selectedPost.fields.featuredImage.fields.file.url}
+                  alt={selectedPost.fields.title}
+                  className="w-full h-64 object-cover rounded-lg mb-4"
+                />
+              )}
+              <div className="prose max-w-none">{documentToReactComponents(selectedPost.fields.content)}</div>
             </>
           )}
         </DialogContent>
