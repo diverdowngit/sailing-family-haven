@@ -19,6 +19,7 @@ import {
 } from "@/components/ui/pagination";
 import { documentToReactComponents } from '@contentful/rich-text-react-renderer';
 import type { BlogPost } from "@/lib/contentful/types";
+import { BLOCKS } from '@contentful/rich-text-types';
 
 const ITEMS_PER_PAGE = 10;
 
@@ -30,6 +31,14 @@ export default function Blog() {
     queryKey: ['blog-posts'],
     queryFn: fetchBlogPosts,
   });
+
+  // Function to get first paragraph of content
+  const getFirstParagraph = (content: any) => {
+    const paragraphs = content.content.filter(
+      (item: any) => item.nodeType === BLOCKS.PARAGRAPH
+    );
+    return paragraphs.length > 0 ? { ...content, content: [paragraphs[0]] } : content;
+  };
 
   if (isLoading) {
     return (
@@ -67,7 +76,9 @@ export default function Blog() {
             )}
             <h2 className="text-2xl font-semibold mb-2">{post.fields.title}</h2>
             <p className="text-gray-600 mb-2">{format(new Date(post.fields.publishDate), 'MMMM d, yyyy')}</p>
-            <div className="prose max-w-none mb-4">{documentToReactComponents(post.fields.content)}</div>
+            <div className="prose max-w-none mb-4">
+              {documentToReactComponents(getFirstParagraph(post.fields.content))}
+            </div>
             <Button onClick={() => setSelectedPost(post)}>Read More</Button>
           </div>
         ))}
