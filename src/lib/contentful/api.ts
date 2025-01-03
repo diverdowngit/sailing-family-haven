@@ -7,7 +7,7 @@ export const fetchBlogPosts = async (): Promise<BlogPost[]> => {
   try {
     const response = await contentfulClient.getEntries<BlogPostSkeleton>({
       content_type: 'blog',
-      order: ['sys.createdAt'],
+      order: ['-fields.publishDate'],
     });
     return response.items;
   } catch (error) {
@@ -20,7 +20,7 @@ export const fetchBlogPosts = async (): Promise<BlogPost[]> => {
 export const fetchGalleryImages = async (): Promise<GalleryImage[]> => {
   try {
     const response = await contentfulClient.getEntries<GalleryImageSkeleton>({
-      content_type: 'gallery',
+      content_type: 'galleryImage',
     });
     return response.items;
   } catch (error) {
