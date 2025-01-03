@@ -97,18 +97,20 @@ export default function Blog() {
         </Pagination>
       )}
       <Dialog open={!!selectedPost} onOpenChange={() => setSelectedPost(null)}>
-        <DialogContent className="max-w-4xl max-h-[90vh] overflow-y-auto">
+        <DialogContent className="w-[95vw] max-h-[95vh] overflow-y-auto p-6">
           {selectedPost && (
             <>
-              <DialogTitle>{selectedPost.fields.title}</DialogTitle>
+              <DialogTitle className="text-2xl font-bold mb-4">{selectedPost.fields.title}</DialogTitle>
               {selectedPost.fields.featuredImage && (
                 <img
                   src={selectedPost.fields.featuredImage.fields.file.url}
                   alt={selectedPost.fields.title}
-                  className="w-full h-auto max-h-[70vh] object-contain rounded-lg mb-4"
+                  className="w-full h-auto max-h-[60vh] object-contain rounded-lg mb-6"
                 />
               )}
-              <div className="prose max-w-none">{documentToReactComponents(selectedPost.fields.content)}</div>
+              <div className="prose prose-lg max-w-none">
+                {documentToReactComponents(selectedPost.fields.content)}
+              </div>
             </>
           )}
         </DialogContent>
