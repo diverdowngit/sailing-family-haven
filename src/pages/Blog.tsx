@@ -79,7 +79,9 @@ export default function Blog() {
             <div className="prose max-w-none mb-4">
               {documentToReactComponents(getFirstParagraph(post.fields.content))}
             </div>
-            <Button onClick={() => setSelectedPost(post)}>Read More</Button>
+            <div className="flex justify-center w-full">
+              <Button onClick={() => setSelectedPost(post)}>Read More</Button>
+            </div>
           </div>
         ))}
       </div>
