@@ -19,7 +19,6 @@ import {
 } from "@/components/ui/pagination";
 import { documentToReactComponents } from '@contentful/rich-text-react-renderer';
 import type { BlogPost } from "@/lib/contentful/types";
-import { BLOCKS } from '@contentful/rich-text-types';
 
 const ITEMS_PER_PAGE = 10;
 
@@ -34,7 +33,7 @@ export default function Blog() {
 
   const getFirstParagraph = (content: any) => {
     const paragraphs = content.content.filter(
-      (item: any) => item.nodeType === BLOCKS.PARAGRAPH
+      (item: any) => item.nodeType === 'paragraph'
     );
     return paragraphs.length > 0 ? { ...content, content: [paragraphs[0]] } : content;
   };
@@ -74,7 +73,9 @@ export default function Blog() {
               />
             )}
             <h2 className="text-2xl font-semibold mb-2">{post.fields.title}</h2>
-            <p className="text-gray-600 mb-2">{format(new Date(post.fields.publishDate), 'MMMM d, yyyy')}</p>
+            <p className="text-gray-600 mb-2">
+              {format(new Date(post.fields.publishDate), 'MMMM d, yyyy')}
+            </p>
             <div className="prose max-w-none mb-4">
               {documentToReactComponents(getFirstParagraph(post.fields.content))}
             </div>
@@ -111,9 +112,9 @@ export default function Blog() {
       )}
 
       <Dialog open={!!selectedPost} onOpenChange={() => setSelectedPost(null)}>
-        <DialogContent className="fixed left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[90vw] max-w-4xl max-h-[85vh] overflow-y-auto p-4 md:p-6">
+        <DialogContent className="absolute top-[50%] left-[50%] transform -translate-x-1/2 -translate-y-1/2 w-[90vw] sm:w-[85vw] md:w-[80vw] max-w-3xl h-[80vh] overflow-y-auto bg-background rounded-lg">
           {selectedPost && (
-            <div className="max-w-3xl mx-auto px-4">
+            <div className="p-4 md:p-6">
               <DialogTitle className="text-xl md:text-2xl font-bold mb-4 text-center">
                 {selectedPost.fields.title}
               </DialogTitle>
@@ -121,10 +122,10 @@ export default function Blog() {
                 <img
                   src={selectedPost.fields.featuredImage.fields.file.url}
                   alt={selectedPost.fields.title}
-                  className="w-full h-auto max-h-[50vh] object-contain rounded-lg mb-6"
+                  className="w-full max-h-[40vh] object-contain rounded-lg mb-6"
                 />
               )}
-              <div className="prose prose-sm md:prose-base lg:prose-lg max-w-none mx-auto">
+              <div className="prose prose-sm sm:prose lg:prose-lg max-w-none mx-auto">
                 {documentToReactComponents(selectedPost.fields.content)}
               </div>
             </div>
