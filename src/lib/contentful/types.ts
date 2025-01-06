@@ -1,5 +1,5 @@
 import { Document } from '@contentful/rich-text-types';
-import type { Entry, Asset } from 'contentful';
+import type { Entry, Asset, EntrySkeletonType } from 'contentful';
 
 export interface BlogPostFields {
   title: string;
@@ -15,12 +15,12 @@ export interface GalleryImageFields {
   image: Asset;
 }
 
-export interface BlogPostSkeleton {
+export interface BlogPostSkeleton extends EntrySkeletonType {
   contentTypeId: 'blog';
   fields: BlogPostFields;
 }
 
-export interface GalleryImageSkeleton {
+export interface GalleryImageSkeleton extends EntrySkeletonType {
   contentTypeId: 'galleryImage';
   fields: GalleryImageFields;
 }

@@ -112,7 +112,7 @@ export default function Blog() {
       )}
 
       <Dialog open={!!selectedPost} onOpenChange={() => setSelectedPost(null)}>
-        <DialogContent className="absolute top-[50%] left-[50%] transform -translate-x-1/2 -translate-y-1/2 w-[90vw] sm:w-[85vw] md:w-[80vw] max-w-3xl h-[80vh] overflow-y-auto bg-background rounded-lg">
+        <DialogContent className="fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[90vw] sm:w-[85vw] md:w-[80vw] max-w-3xl h-[80vh] overflow-y-auto bg-background rounded-lg">
           {selectedPost && (
             <div className="p-4 md:p-6">
               <DialogTitle className="text-xl md:text-2xl font-bold mb-4 text-center">
