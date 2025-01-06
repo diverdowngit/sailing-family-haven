@@ -111,7 +111,7 @@ export default function Blog() {
       )}
 
       <Dialog open={!!selectedPost} onOpenChange={() => setSelectedPost(null)}>
-        <DialogContent className="w-[95vw] max-w-5xl max-h-[90vh] overflow-y-auto p-4 md:p-6">
+        <DialogContent className="fixed left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[90vw] max-w-4xl max-h-[85vh] overflow-y-auto p-4 md:p-6">
           {selectedPost && (
             <div className="max-w-3xl mx-auto px-4">
               <DialogTitle className="text-xl md:text-2xl font-bold mb-4 text-center">
