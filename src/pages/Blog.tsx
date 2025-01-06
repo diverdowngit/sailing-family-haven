@@ -32,7 +32,6 @@ export default function Blog() {
     queryFn: fetchBlogPosts,
   });
 
-  // Function to get first paragraph of content
   const getFirstParagraph = (content: any) => {
     const paragraphs = content.content.filter(
       (item: any) => item.nodeType === BLOCKS.PARAGRAPH
@@ -85,6 +84,7 @@ export default function Blog() {
           </div>
         ))}
       </div>
+
       {totalPages > 1 && (
         <Pagination className="mt-8">
           <PaginationContent>
@@ -109,19 +109,22 @@ export default function Blog() {
           </PaginationContent>
         </Pagination>
       )}
+
       <Dialog open={!!selectedPost} onOpenChange={() => setSelectedPost(null)}>
-        <DialogContent className="w-[95vw] max-h-[95vh] overflow-y-auto p-6">
+        <DialogContent className="w-[95vw] max-w-5xl max-h-[90vh] overflow-y-auto p-4 md:p-6">
           {selectedPost && (
-            <div className="max-w-3xl mx-auto">
-              <DialogTitle className="text-2xl font-bold mb-4 text-center">{selectedPost.fields.title}</DialogTitle>
+            <div className="max-w-3xl mx-auto px-4">
+              <DialogTitle className="text-xl md:text-2xl font-bold mb-4 text-center">
+                {selectedPost.fields.title}
+              </DialogTitle>
               {selectedPost.fields.featuredImage && (
                 <img
                   src={selectedPost.fields.featuredImage.fields.file.url}
                   alt={selectedPost.fields.title}
-                  className="w-full h-auto max-h-[60vh] object-contain rounded-lg mb-6"
+                  className="w-full h-auto max-h-[50vh] object-contain rounded-lg mb-6"
                 />
               )}
-              <div className="prose prose-lg max-w-none mx-auto">
+              <div className="prose prose-sm md:prose-base lg:prose-lg max-w-none mx-auto">
                 {documentToReactComponents(selectedPost.fields.content)}
               </div>
             </div>
