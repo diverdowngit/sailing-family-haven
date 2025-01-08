@@ -6,7 +6,6 @@ const Navigation = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
 
-  // Handle scroll effect
   useEffect(() => {
     const handleScroll = () => {
       setScrolled(window.scrollY > 20);
@@ -18,9 +17,10 @@ const Navigation = () => {
   const navItems = [
     { name: "Home", path: "/" },
     { name: "About", path: "/about" },
-    { name: "Merchandise", path: "/merchandise" },
     { name: "Blog", path: "/blog" },
     { name: "Gallery", path: "/gallery" },
+    { name: "Merchandise", path: "/merchandise" },
+    { name: "Support Us", path: "/patreon" },
   ];
 
   return (
@@ -55,7 +55,7 @@ const Navigation = () => {
             ))}
           </div>
 
-          {/* Mobile Navigation Button */}
+          {/* Mobile Menu Button */}
           <div className="md:hidden flex items-center">
             <button
               onClick={() => setIsOpen(!isOpen)}
@@ -66,27 +66,27 @@ const Navigation = () => {
             </button>
           </div>
         </div>
-      </div>
 
-      {/* Mobile Navigation Menu */}
-      <div
-        className={`md:hidden transition-all duration-300 ease-in-out ${
-          isOpen
-            ? "max-h-screen opacity-100 visible"
-            : "max-h-0 opacity-0 invisible"
-        }`}
-      >
-        <div className="px-4 pt-2 pb-3 space-y-1 bg-white/95 backdrop-blur-sm shadow-md">
-          {navItems.map((item) => (
-            <Link
-              key={item.name}
-              to={item.path}
-              className="block px-3 py-2 text-base font-medium text-navy-dark hover:text-coral transition-colors duration-200"
-              onClick={() => setIsOpen(false)}
-            >
-              {item.name}
-            </Link>
-          ))}
+        {/* Mobile Navigation Menu */}
+        <div
+          className={`md:hidden transition-all duration-300 ease-in-out ${
+            isOpen
+              ? "max-h-screen opacity-100 visible"
+              : "max-h-0 opacity-0 invisible"
+          }`}
+        >
+          <div className="px-4 pt-2 pb-3 space-y-1 bg-white/95 backdrop-blur-sm shadow-md">
+            {navItems.map((item) => (
+              <Link
+                key={item.name}
+                to={item.path}
+                className="block px-3 py-2 text-base font-medium text-navy-dark hover:text-coral transition-colors duration-200"
+                onClick={() => setIsOpen(false)}
+              >
+                {item.name}
+              </Link>
+            ))}
+          </div>
         </div>
       </div>
     </nav>
