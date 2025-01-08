@@ -1,37 +1,38 @@
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
-import { Toaster } from "@/components/ui/toaster";
-import { Toaster as Sonner } from "@/components/ui/sonner";
-import { TooltipProvider } from "@/components/ui/tooltip";
+import { Suspense, lazy } from "react";
 import Layout from "./components/Layout";
-import Home from "./pages/Index";
-import About from "./pages/About";
-import Merchandise from "./pages/Merchandise";
-import Blog from "./pages/Blog";
-import Gallery from "./pages/Gallery";
-import Patreon from "./pages/Patreon";
+import Index from "./pages/Index";
+import { Skeleton } from "./components/ui/skeleton";
+
+// Lazy load routes
+const About = lazy(() => import("./pages/About"));
+const Blog = lazy(() => import("./pages/Blog"));
+const Gallery = lazy(() => import("./pages/Gallery"));
+const Merchandise = lazy(() => import("./pages/Merchandise"));
+const Patreon = lazy(() => import("./pages/Patreon"));
 
 const queryClient = new QueryClient();
 
-const App = () => (
-  <QueryClientProvider client={queryClient}>
-    <TooltipProvider>
-      <Toaster />
-      <Sonner />
-      <BrowserRouter>
+function App() {
+  return (
+    <QueryClientProvider client={queryClient}>
+      <Router>
         <Layout>
-          <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/about" element={<About />} />
-            <Route path="/merchandise" element={<Merchandise />} />
-            <Route path="/blog" element={<Blog />} />
-            <Route path="/gallery" element={<Gallery />} />
-            <Route path="/patreon" element={<Patreon />} />
-          </Routes>
+          <Suspense fallback={<Skeleton className="w-full h-screen" />}>
+            <Routes>
+              <Route path="/" element={<Index />} />
+              <Route path="/about" element={<About />} />
+              <Route path="/blog" element={<Blog />} />
+              <Route path="/gallery" element={<Gallery />} />
+              <Route path="/merchandise" element={<Merchandise />} />
+              <Route path="/patreon" element={<Patreon />} />
+            </Routes>
+          </Suspense>
         </Layout>
-      </BrowserRouter>
-    </TooltipProvider>
-  </QueryClientProvider>
-);
+      </Router>
+    </QueryClientProvider>
+  );
+}
 
 export default App;
