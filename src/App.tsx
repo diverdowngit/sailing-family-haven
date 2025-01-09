@@ -1,9 +1,9 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { Suspense, lazy } from "react";
+import { Suspense, lazy, useState, useEffect } from "react";
 import Layout from "./components/Layout";
 import Index from "./pages/Index";
-import { Skeleton } from "./components/ui/skeleton";
+import LoadingPage from "./components/LoadingPage";
 
 // Lazy load routes
 const About = lazy(() => import("./pages/About"));
@@ -15,11 +15,26 @@ const Patreon = lazy(() => import("./pages/Patreon"));
 const queryClient = new QueryClient();
 
 function App() {
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    // Simulate initial app loading
+    const timer = setTimeout(() => {
+      setIsLoading(false);
+    }, 1000);
+
+    return () => clearTimeout(timer);
+  }, []);
+
+  if (isLoading) {
+    return <LoadingPage />;
+  }
+
   return (
     <QueryClientProvider client={queryClient}>
       <Router>
         <Layout>
-          <Suspense fallback={<Skeleton className="w-full h-screen" />}>
+          <Suspense fallback={<LoadingPage />}>
             <Routes>
               <Route path="/" element={<Index />} />
               <Route path="/about" element={<About />} />
