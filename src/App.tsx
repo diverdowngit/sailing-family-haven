@@ -22,7 +22,6 @@ function App() {
   const { toast } = useToast();
 
   useEffect(() => {
-    // Simulate initial app loading
     const timer = setTimeout(() => {
       setIsLoading(false);
     }, 1000);
@@ -31,13 +30,12 @@ function App() {
   }, []);
 
   useEffect(() => {
-    // Show cookie consent if not already set
     const consent = getCookieConsent();
     if (consent === null) {
-      toast({
+      const toastInstance = toast({
         title: "Cookie Consent",
         description: "We use cookies to enhance your experience. Do you accept our cookie policy?",
-        duration: Infinity,
+        duration: null,
         action: (
           <div className="flex gap-2">
             <button
@@ -67,6 +65,12 @@ function App() {
           </div>
         ),
       });
+
+      return () => {
+        if (toastInstance) {
+          toast.dismiss(toastInstance.id);
+        }
+      };
     }
   }, [toast]);
 

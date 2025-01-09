@@ -2,33 +2,21 @@ import { createClient } from 'contentful';
 import type { BlogPost, GalleryImage } from './types';
 import { placeholderBlogPosts, placeholderGalleryImages } from './placeholders';
 
-// Only create client if credentials are available
-const getContentfulClient = () => {
-  const spaceId = import.meta.env.VITE_CONTENTFUL_SPACE_ID;
-  const accessToken = import.meta.env.VITE_CONTENTFUL_ACCESS_TOKEN;
+const contentfulClient = import.meta.env.VITE_CONTENTFUL_SPACE_ID && import.meta.env.VITE_CONTENTFUL_ACCESS_TOKEN
+  ? createClient({
+      space: import.meta.env.VITE_CONTENTFUL_SPACE_ID,
+      accessToken: import.meta.env.VITE_CONTENTFUL_ACCESS_TOKEN,
+    })
+  : null;
 
-  if (!spaceId || !accessToken) {
-    console.warn('Missing Contentful credentials. Using placeholder data instead.');
-    return null;
-  }
-
-  return createClient({
-    space: spaceId,
-    accessToken: accessToken,
-  });
-};
-
-const contentfulClient = getContentfulClient();
-
-// Function to fetch blog posts from Contentful
-export const fetchBlogPosts = async (): Promise<BlogPost[]> => {
+export const getBlogPosts = async (): Promise<BlogPost[]> => {
   if (!contentfulClient) {
-    console.warn('No Contentful client available. Using placeholder data.');
-    return placeholderBlogPosts;
+    console.log('Using placeholder blog posts');
+    return placeholderBlogPosts as BlogPost[];
   }
 
   try {
-    const response = await contentfulClient.getEntries<BlogPostFields>({
+    const response = await contentfulClient.getEntries<BlogPost>({
       content_type: 'blogPost',
       order: ['-sys.createdAt'],
       include: 2,
@@ -36,25 +24,25 @@ export const fetchBlogPosts = async (): Promise<BlogPost[]> => {
     return response.items as BlogPost[];
   } catch (error) {
     console.error('Error fetching blog posts:', error);
-    return placeholderBlogPosts;
+    return placeholderBlogPosts as BlogPost[];
   }
 };
 
-// Function to fetch gallery images from Contentful
-export const fetchGalleryImages = async (): Promise<GalleryImage[]> => {
+export const getGalleryImages = async (): Promise<GalleryImage[]> => {
   if (!contentfulClient) {
-    console.warn('No Contentful client available. Using placeholder data.');
-    return placeholderGalleryImages;
+    console.log('Using placeholder gallery images');
+    return placeholderGalleryImages as GalleryImage[];
   }
 
   try {
-    const response = await contentfulClient.getEntries<GalleryImageFields>({
+    const response = await contentfulClient.getEntries<GalleryImage>({
       content_type: 'galleryImage',
+      order: ['-sys.createdAt'],
       include: 2,
     });
     return response.items as GalleryImage[];
   } catch (error) {
     console.error('Error fetching gallery images:', error);
-    return placeholderGalleryImages;
+    return placeholderGalleryImages as GalleryImage[];
   }
 };
