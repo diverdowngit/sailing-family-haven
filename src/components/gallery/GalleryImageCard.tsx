@@ -6,7 +6,7 @@ interface GalleryImageCardProps {
 }
 
 export const GalleryImageCard = ({ image, onClick }: GalleryImageCardProps) => {
-  if (!image?.fields?.image) return null;
+  if (!image?.fields?.image?.fields?.file?.url) return null;
 
   return (
     <div

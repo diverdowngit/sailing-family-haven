@@ -1,5 +1,5 @@
 import { createClient } from 'contentful';
-import type { BlogPost, GalleryImage, BlogPostFields, GalleryImageFields } from './types';
+import type { BlogPost, GalleryImage } from './types';
 import { placeholderBlogPosts, placeholderGalleryImages } from './placeholders';
 
 // Only create client if credentials are available
@@ -29,7 +29,7 @@ export const fetchBlogPosts = async (): Promise<BlogPost[]> => {
 
   try {
     const response = await contentfulClient.getEntries<BlogPostFields>({
-      content_type: 'blog',
+      content_type: 'blogPost',
       order: ['-sys.createdAt'],
       include: 2,
     });

@@ -7,7 +7,7 @@ interface GalleryImageModalProps {
 }
 
 export const GalleryImageModal = ({ image, onClose }: GalleryImageModalProps) => {
-  if (!image?.fields?.image) return null;
+  if (!image?.fields?.image?.fields?.file?.url) return null;
 
   return (
     <Dialog open={!!image} onOpenChange={onClose}>
