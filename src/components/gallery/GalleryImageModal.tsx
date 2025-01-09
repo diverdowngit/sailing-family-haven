@@ -7,7 +7,7 @@ interface GalleryImageModalProps {
 }
 
 export const GalleryImageModal = ({ image, onClose }: GalleryImageModalProps) => {
-  if (!image?.fields) return null;
+  if (!image?.fields?.image) return null;
 
   return (
     <Dialog open={!!image} onOpenChange={onClose}>
@@ -15,22 +15,20 @@ export const GalleryImageModal = ({ image, onClose }: GalleryImageModalProps) =>
         <DialogTitle className="sr-only">
           {image.fields.title || 'Gallery Image'}
         </DialogTitle>
-        {image.fields.image && (
-          <div className="relative w-full h-full flex flex-col">
-            <div className="flex-1 overflow-hidden">
-              <img
-                src={image.fields.image.fields.file.url}
-                alt={image.fields.title || 'Gallery image'}
-                className="w-full h-full object-contain"
-              />
-            </div>
-            <div className="absolute bottom-0 left-0 right-0 bg-black bg-opacity-50 p-4">
-              <h2 className="text-white text-xl font-semibold text-center">
-                {image.fields.title}
-              </h2>
-            </div>
+        <div className="relative w-full h-full flex flex-col">
+          <div className="flex-1 overflow-hidden">
+            <img
+              src={image.fields.image.fields.file.url}
+              alt={image.fields.title || 'Gallery image'}
+              className="w-full h-full object-contain"
+            />
           </div>
-        )}
+          <div className="absolute bottom-0 left-0 right-0 bg-black bg-opacity-50 p-4">
+            <h2 className="text-white text-xl font-semibold text-center">
+              {image.fields.title}
+            </h2>
+          </div>
+        </div>
       </DialogContent>
     </Dialog>
   );
