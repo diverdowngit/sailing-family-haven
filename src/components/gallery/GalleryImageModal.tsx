@@ -7,7 +7,9 @@ interface GalleryImageModalProps {
 }
 
 export const GalleryImageModal = ({ image, onClose }: GalleryImageModalProps) => {
-  const imageUrl = image?.fields?.image?.fields?.file?.url;
+  if (!image) return null;
+  
+  const imageUrl = image.fields?.image?.fields?.file?.url;
   if (!imageUrl) return null;
 
   return (

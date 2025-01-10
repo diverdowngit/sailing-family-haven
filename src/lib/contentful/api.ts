@@ -21,7 +21,7 @@ export const getBlogPosts = async (): Promise<BlogPost[]> => {
       order: ['-sys.createdAt'],
       include: 2,
     });
-    return response.items;
+    return response.items as BlogPost[];
   } catch (error) {
     console.error('Error fetching blog posts:', error);
     return placeholderBlogPosts as unknown as BlogPost[];
@@ -40,7 +40,7 @@ export const getGalleryImages = async (): Promise<GalleryImage[]> => {
       order: ['-sys.createdAt'],
       include: 2,
     });
-    return response.items;
+    return response.items as GalleryImage[];
   } catch (error) {
     console.error('Error fetching gallery images:', error);
     return placeholderGalleryImages as unknown as GalleryImage[];
