@@ -1,4 +1,4 @@
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route, useLocation } from "react-router-dom";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { Suspense, lazy, useState, useEffect } from "react";
 import Layout from "./components/Layout";
@@ -7,6 +7,7 @@ import LoadingPage from "./components/LoadingPage";
 import { useToast } from "@/hooks/use-toast";
 import { getCookieConsent, setCookieConsent } from "./utils/cookieConsent";
 import { Toaster } from "@/components/ui/toaster";
+import { trackPageView } from "./utils/analytics";
 
 // Lazy load routes
 const About = lazy(() => import("./pages/About"));
@@ -16,6 +17,16 @@ const Merchandise = lazy(() => import("./pages/Merchandise"));
 const Patreon = lazy(() => import("./pages/Patreon"));
 
 const queryClient = new QueryClient();
+
+function RouteTracker() {
+  const location = useLocation();
+
+  useEffect(() => {
+    trackPageView(location.pathname);
+  }, [location]);
+
+  return null;
+}
 
 function App() {
   const [isLoading, setIsLoading] = useState(true);
@@ -34,7 +45,7 @@ function App() {
     if (consent === null) {
       const toastInstance = toast({
         title: "Cookie Consent",
-        description: "We use cookies to enhance your experience. Do you accept our cookie policy?",
+        description: "We use cookies to enhance your experience and analyze site traffic. Do you accept our cookie policy?",
         duration: null,
         action: (
           <div className="flex gap-2">
@@ -67,9 +78,7 @@ function App() {
       });
 
       return () => {
-        if (toastInstance) {
-          toast.dismiss(toastInstance.id);
-        }
+        toast.dismiss(toastInstance.id);
       };
     }
   }, [toast]);
@@ -81,6 +90,7 @@ function App() {
   return (
     <QueryClientProvider client={queryClient}>
       <Router>
+        <RouteTracker />
         <Layout>
           <Suspense fallback={<LoadingPage />}>
             <Routes>
