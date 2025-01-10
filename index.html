@@ -7,16 +7,18 @@
     <meta name="description" content="Join our sailing family's journey across the world's oceans. Discover sailing adventures, travel stories, maritime merchandise, and stunning ocean photography." />
     <meta name="keywords" content="sailing family, ocean adventures, sailing life, maritime blog, sailing merchandise, family travel, boat life" />
     <meta name="author" content="Sailing Family Haven" />
+    <meta name="theme-color" content="#ffffff" />
     <meta name="robots" content="index, follow" />
     
-    <!-- Google Analytics -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-      gtag('config', 'G-XXXXXXXXXX');
-    </script>
+    <!-- Preload critical assets -->
+    <link rel="preload" href="/src/index.css" as="style" />
+    <link rel="preload" href="/src/main.tsx" as="script" />
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <link rel="manifest" href="/site.webmanifest" />
     
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website" />
@@ -33,10 +35,9 @@
     <!-- Canonical URL -->
     <link rel="canonical" href="https://sailingfamilyhaven.com" />
   </head>
-
   <body>
     <div id="root"></div>
-    <script src="https://cdn.gpteng.co/gptengineer.js" type="module"></script>
+    <noscript>You need to enable JavaScript to run this app.</noscript>
     <script type="module" src="/src/main.tsx"></script>
   </body>
 </html>
