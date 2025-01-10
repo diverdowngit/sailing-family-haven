@@ -6,7 +6,8 @@ interface GalleryImageCardProps {
 }
 
 export const GalleryImageCard = ({ image, onClick }: GalleryImageCardProps) => {
-  if (!image?.fields?.image?.fields?.file?.url) return null;
+  const imageUrl = image?.fields?.image?.fields?.file?.url;
+  if (!imageUrl) return null;
 
   return (
     <div
@@ -15,7 +16,7 @@ export const GalleryImageCard = ({ image, onClick }: GalleryImageCardProps) => {
       onClick={() => onClick(image)}
     >
       <img
-        src={image.fields.image.fields.file.url}
+        src={imageUrl}
         alt={image.fields.title || 'Gallery image'}
         className="w-full h-full object-cover transform transition-transform duration-300 group-hover:scale-110"
       />

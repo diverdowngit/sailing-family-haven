@@ -7,7 +7,8 @@ interface GalleryImageModalProps {
 }
 
 export const GalleryImageModal = ({ image, onClose }: GalleryImageModalProps) => {
-  if (!image?.fields?.image?.fields?.file?.url) return null;
+  const imageUrl = image?.fields?.image?.fields?.file?.url;
+  if (!imageUrl) return null;
 
   return (
     <Dialog open={!!image} onOpenChange={onClose}>
@@ -15,7 +16,7 @@ export const GalleryImageModal = ({ image, onClose }: GalleryImageModalProps) =>
         <h2 className="text-2xl font-bold mb-4">{image.fields.title}</h2>
         <div className="relative aspect-video">
           <img
-            src={image.fields.image.fields.file.url}
+            src={imageUrl}
             alt={image.fields.title || 'Gallery image'}
             className="w-full h-full object-contain"
           />

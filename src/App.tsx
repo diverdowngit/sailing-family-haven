@@ -56,6 +56,7 @@ function App() {
                   description: "Thank you for accepting cookies!",
                   duration: 3000,
                 });
+                toastInstance.dismiss();
               }}
               className="bg-primary text-primary-foreground px-3 py-2 rounded-md text-sm"
             >
@@ -68,6 +69,7 @@ function App() {
                   description: "Cookies have been rejected.",
                   duration: 3000,
                 });
+                toastInstance.dismiss();
               }}
               className="bg-secondary text-secondary-foreground px-3 py-2 rounded-md text-sm"
             >
@@ -78,7 +80,7 @@ function App() {
       });
 
       return () => {
-        toast.dismiss(toastInstance.id);
+        toastInstance.dismiss();
       };
     }
   }, [toast]);

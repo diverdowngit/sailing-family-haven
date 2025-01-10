@@ -1,7 +1,7 @@
 import { Document } from '@contentful/rich-text-types';
-import type { Asset, Entry, EntrySkeletonType } from 'contentful';
+import type { Asset, Entry } from 'contentful';
 
-interface BlogPostFields {
+export interface BlogPostFields {
   title: string;
   slug: string;
   excerpt: string;
@@ -10,17 +10,43 @@ interface BlogPostFields {
   featuredImage: Asset;
 }
 
-interface GalleryImageFields {
+export interface GalleryImageFields {
   title: string;
   image: Asset;
 }
 
 export interface BlogPost extends Entry<BlogPostFields> {
-  contentTypeId: 'blogPost';
+  sys: {
+    id: string;
+    type: string;
+    createdAt: string;
+    updatedAt: string;
+    locale: string;
+    contentType: {
+      sys: {
+        id: string;
+        type: string;
+        linkType: string;
+      };
+    };
+  };
   fields: BlogPostFields;
 }
 
 export interface GalleryImage extends Entry<GalleryImageFields> {
-  contentTypeId: 'galleryImage';
+  sys: {
+    id: string;
+    type: string;
+    createdAt: string;
+    updatedAt: string;
+    locale: string;
+    contentType: {
+      sys: {
+        id: string;
+        type: string;
+        linkType: string;
+      };
+    };
+  };
   fields: GalleryImageFields;
 }

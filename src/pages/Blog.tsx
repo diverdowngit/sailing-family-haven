@@ -1,5 +1,5 @@
 import { useQuery } from "@tanstack/react-query";
-import { fetchBlogPosts } from "@/lib/contentful/api";
+import { getBlogPosts } from "@/lib/contentful/api";
 import { Skeleton } from "@/components/ui/skeleton";
 import { format } from "date-fns";
 import { useState } from "react";
@@ -28,7 +28,7 @@ export default function Blog() {
 
   const { data: posts, isLoading, error } = useQuery({
     queryKey: ['blog-posts'],
-    queryFn: fetchBlogPosts,
+    queryFn: getBlogPosts,
   });
 
   const getFirstParagraph = (content: any) => {
@@ -112,10 +112,10 @@ export default function Blog() {
       )}
 
       <Dialog open={!!selectedPost} onOpenChange={() => setSelectedPost(null)}>
-        <DialogContent className="fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[90vw] sm:w-[85vw] md:w-[80vw] max-w-3xl h-[80vh] overflow-y-auto bg-background rounded-lg">
+        <DialogContent className="max-w-4xl">
           {selectedPost && (
-            <div className="p-4 md:p-6">
-              <DialogTitle className="text-xl md:text-2xl font-bold mb-4 text-center">
+            <div className="p-4">
+              <DialogTitle className="text-2xl font-bold mb-4">
                 {selectedPost.fields.title}
               </DialogTitle>
               {selectedPost.fields.featuredImage && (
@@ -125,7 +125,7 @@ export default function Blog() {
                   className="w-full max-h-[40vh] object-contain rounded-lg mb-6"
                 />
               )}
-              <div className="prose prose-sm sm:prose lg:prose-lg max-w-none mx-auto">
+              <div className="prose max-w-none">
                 {documentToReactComponents(selectedPost.fields.content)}
               </div>
             </div>
