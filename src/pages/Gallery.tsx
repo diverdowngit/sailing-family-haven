@@ -8,7 +8,7 @@ import {
   PaginationNext,
   PaginationPrevious,
 } from "@/components/ui/pagination";
-import { fetchGalleryImages } from "@/lib/contentful/api";
+import { getGalleryImages } from "@/lib/contentful/api";
 import type { GalleryImage } from "@/lib/contentful/types";
 import { GalleryGrid } from "@/components/gallery/GalleryGrid";
 import { GalleryImageModal } from "@/components/gallery/GalleryImageModal";
@@ -21,7 +21,7 @@ const Gallery = () => {
 
   const { data: images, isLoading } = useQuery({
     queryKey: ['gallery-images'],
-    queryFn: fetchGalleryImages,
+    queryFn: getGalleryImages,
   });
 
   const totalImages = images?.length || 0;

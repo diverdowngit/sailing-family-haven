@@ -16,7 +16,7 @@ export const GalleryImageCard = ({ image, onClick }: GalleryImageCardProps) => {
       onClick={() => onClick(image)}
     >
       <img
-        src={imageUrl}
+        src={`https:${imageUrl}`}
         alt={image.fields.title || 'Gallery image'}
         className="w-full h-full object-cover transform transition-transform duration-300 group-hover:scale-110"
       />

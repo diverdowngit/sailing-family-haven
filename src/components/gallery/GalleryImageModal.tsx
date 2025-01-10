@@ -16,7 +16,7 @@ export const GalleryImageModal = ({ image, onClose }: GalleryImageModalProps) =>
         <h2 className="text-2xl font-bold mb-4">{image.fields.title}</h2>
         <div className="relative aspect-video">
           <img
-            src={imageUrl}
+            src={`https:${imageUrl}`}
             alt={image.fields.title || 'Gallery image'}
             className="w-full h-full object-contain"
           />

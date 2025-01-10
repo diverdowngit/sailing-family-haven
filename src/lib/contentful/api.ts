@@ -1,5 +1,5 @@
 import { createClient } from 'contentful';
-import type { BlogPost, GalleryImage } from './types';
+import type { BlogPost, GalleryImage, BlogPostFields, GalleryImageFields } from './types';
 import { placeholderBlogPosts, placeholderGalleryImages } from './placeholders';
 
 const contentfulClient = import.meta.env.VITE_CONTENTFUL_SPACE_ID && import.meta.env.VITE_CONTENTFUL_ACCESS_TOKEN
@@ -12,7 +12,7 @@ const contentfulClient = import.meta.env.VITE_CONTENTFUL_SPACE_ID && import.meta
 export const getBlogPosts = async (): Promise<BlogPost[]> => {
   if (!contentfulClient) {
     console.log('Using placeholder blog posts');
-    return placeholderBlogPosts;
+    return placeholderBlogPosts as unknown as BlogPost[];
   }
 
   try {
@@ -21,17 +21,17 @@ export const getBlogPosts = async (): Promise<BlogPost[]> => {
       order: ['-sys.createdAt'],
       include: 2,
     });
-    return response.items as unknown as BlogPost[];
+    return response.items;
   } catch (error) {
     console.error('Error fetching blog posts:', error);
-    return placeholderBlogPosts;
+    return placeholderBlogPosts as unknown as BlogPost[];
   }
 };
 
 export const getGalleryImages = async (): Promise<GalleryImage[]> => {
   if (!contentfulClient) {
     console.log('Using placeholder gallery images');
-    return placeholderGalleryImages;
+    return placeholderGalleryImages as unknown as GalleryImage[];
   }
 
   try {
@@ -40,9 +40,9 @@ export const getGalleryImages = async (): Promise<GalleryImage[]> => {
       order: ['-sys.createdAt'],
       include: 2,
     });
-    return response.items as unknown as GalleryImage[];
+    return response.items;
   } catch (error) {
     console.error('Error fetching gallery images:', error);
-    return placeholderGalleryImages;
+    return placeholderGalleryImages as unknown as GalleryImage[];
   }
 };
