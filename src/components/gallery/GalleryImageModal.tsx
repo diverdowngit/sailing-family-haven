@@ -12,6 +12,9 @@ export const GalleryImageModal = ({ image, onClose }: GalleryImageModalProps) =>
   const imageUrl = image.fields?.image?.fields?.file?.url;
   if (!imageUrl) return null;
 
+  // Add quality parameters to Contentful URL for larger display
+  const optimizedImageUrl = `${imageUrl}?w=1200&q=85&fm=webp`;
+
   return (
     <Dialog open={!!image} onOpenChange={onClose}>
       <DialogContent className="max-w-4xl w-full p-0">
@@ -20,9 +23,13 @@ export const GalleryImageModal = ({ image, onClose }: GalleryImageModalProps) =>
         </div>
         <div className="relative w-full max-h-[80vh] overflow-hidden">
           <img
-            src={`https:${imageUrl}`}
+            src={`https:${optimizedImageUrl}`}
             alt={image.fields.title || 'Gallery image'}
             className="w-full h-full object-contain"
+            loading="lazy"
+            decoding="async"
+            width="1200"
+            height="800"
           />
         </div>
         <div className="p-4">

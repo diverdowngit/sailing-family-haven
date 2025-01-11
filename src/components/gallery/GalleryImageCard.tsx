@@ -9,6 +9,9 @@ export const GalleryImageCard = ({ image, onClick }: GalleryImageCardProps) => {
   const imageUrl = image.fields?.image?.fields?.file?.url;
   if (!imageUrl) return null;
 
+  // Add width and quality parameters to Contentful URL
+  const optimizedImageUrl = `${imageUrl}?w=800&q=80&fm=webp`;
+
   return (
     <div
       key={image.sys.id}
@@ -25,11 +28,13 @@ export const GalleryImageCard = ({ image, onClick }: GalleryImageCardProps) => {
       aria-label={`View ${image.fields.title || 'gallery image'}`}
     >
       <img
-        src={`https:${imageUrl}`}
+        src={`https:${optimizedImageUrl}`}
         alt={image.fields.title || 'Gallery image'}
         className="w-full h-full object-cover"
         loading="lazy"
         decoding="async"
+        width="800"
+        height="800"
       />
       <div className="absolute inset-0 bg-black bg-opacity-40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end justify-center p-4">
         <h3 className="text-white text-lg font-semibold text-center">
