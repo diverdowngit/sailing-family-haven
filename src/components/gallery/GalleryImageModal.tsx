@@ -14,18 +14,22 @@ export const GalleryImageModal = ({ image, onClose }: GalleryImageModalProps) =>
 
   return (
     <Dialog open={!!image} onOpenChange={onClose}>
-      <DialogContent className="max-w-4xl">
-        <h2 className="text-2xl font-bold mb-4">{image.fields.title}</h2>
-        <div className="relative aspect-video">
+      <DialogContent className="max-w-4xl w-full p-0">
+        <div className="p-4">
+          <h2 className="text-2xl font-bold">{image.fields.title}</h2>
+        </div>
+        <div className="relative w-full max-h-[80vh] overflow-hidden">
           <img
             src={`https:${imageUrl}`}
             alt={image.fields.title || 'Gallery image'}
             className="w-full h-full object-contain"
           />
         </div>
-        <p className="mt-4 text-gray-600">
-          {image.fields.title}
-        </p>
+        <div className="p-4">
+          <p className="text-gray-600">
+            {image.fields.title}
+          </p>
+        </div>
       </DialogContent>
     </Dialog>
   );

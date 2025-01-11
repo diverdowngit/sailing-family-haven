@@ -6,13 +6,13 @@ interface GalleryImageCardProps {
 }
 
 export const GalleryImageCard = ({ image, onClick }: GalleryImageCardProps) => {
-  const imageUrl = image?.fields?.image?.fields?.file?.url;
+  const imageUrl = image.fields?.image?.fields?.file?.url;
   if (!imageUrl) return null;
 
   return (
     <div
       key={image.sys.id}
-      className="group relative aspect-square rounded-lg overflow-hidden shadow-md hover:shadow-lg transition-all duration-300 cursor-pointer"
+      className="group relative aspect-square w-full rounded-lg overflow-hidden shadow-md hover:shadow-lg transition-all duration-300 cursor-pointer"
       onClick={() => onClick(image)}
       role="button"
       tabIndex={0}
@@ -27,7 +27,7 @@ export const GalleryImageCard = ({ image, onClick }: GalleryImageCardProps) => {
       <img
         src={`https:${imageUrl}`}
         alt={image.fields.title || 'Gallery image'}
-        className="w-full h-full object-cover transform transition-transform duration-300 group-hover:scale-110"
+        className="w-full h-full object-cover"
         loading="lazy"
         decoding="async"
       />

@@ -8,11 +8,15 @@ export interface BlogPostFields {
   content: Document;
   publishDate: EntryFields.Date;
   featuredImage: Asset;
+  fields: any;
+  contentTypeId: string;
 }
 
 export interface GalleryImageFields {
   title: EntryFields.Text;
   image: Asset;
+  fields: any;
+  contentTypeId: string;
 }
 
 export type BlogPost = Entry<BlogPostFields>;
