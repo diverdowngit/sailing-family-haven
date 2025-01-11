@@ -22,18 +22,36 @@
     
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://sailingfamilyhaven.com/" />
     <meta property="og:title" content="Sailing Family Haven - Adventure Awaits on the Open Seas" />
     <meta property="og:description" content="Join our sailing family's journey across the world's oceans. Discover sailing adventures, travel stories, maritime merchandise, and stunning ocean photography." />
     <meta property="og:image" content="/og-image.png" />
     
     <!-- Twitter -->
     <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:url" content="https://sailingfamilyhaven.com/" />
     <meta name="twitter:title" content="Sailing Family Haven - Adventure Awaits on the Open Seas" />
     <meta name="twitter:description" content="Join our sailing family's journey across the world's oceans. Discover sailing adventures, travel stories, maritime merchandise, and stunning ocean photography." />
     <meta name="twitter:image" content="/og-image.png" />
     
     <!-- Canonical URL -->
     <link rel="canonical" href="https://sailingfamilyhaven.com" />
+
+    <!-- JSON-LD Structured Data -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "WebSite",
+        "name": "Sailing Family Haven",
+        "url": "https://sailingfamilyhaven.com",
+        "description": "Join our sailing family's journey across the world's oceans. Discover sailing adventures, travel stories, maritime merchandise, and stunning ocean photography.",
+        "potentialAction": {
+          "@type": "SearchAction",
+          "target": "https://sailingfamilyhaven.com/search?q={search_term_string}",
+          "query-input": "required name=search_term_string"
+        }
+      }
+    </script>
   </head>
   <body>
     <div id="root"></div>
