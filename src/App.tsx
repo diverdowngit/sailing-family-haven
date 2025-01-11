@@ -46,7 +46,7 @@ function App() {
       const toastInstance = toast({
         title: "Cookie Consent",
         description: "We use cookies to enhance your experience and analyze site traffic. Do you accept our cookie policy?",
-        duration: null,
+        duration: null, // Toast will stay until user interaction
         action: (
           <div className="flex gap-2">
             <button

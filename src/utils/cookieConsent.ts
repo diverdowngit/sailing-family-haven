@@ -1,4 +1,5 @@
 export const setCookieConsent = (accepted: boolean) => {
+  // Store in localStorage with no expiration
   localStorage.setItem('cookieConsent', accepted ? 'accepted' : 'rejected');
 };
 
