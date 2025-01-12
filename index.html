@@ -2,62 +2,21 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.ico" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    
-    <!-- Preconnect to required origins -->
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link rel="preconnect" href="https://images.ctfassets.net" crossorigin />
-    
-    <title>Sailing Family Haven - Adventure Awaits on the Open Seas</title>
-    <meta name="description" content="Join our sailing family's journey across the world's oceans. Discover sailing adventures, travel stories, maritime merchandise, and stunning ocean photography." />
-    <meta name="keywords" content="sailing family, ocean adventures, sailing life, maritime blog, sailing merchandise, family travel, boat life" />
-    <meta name="author" content="Sailing Family Haven" />
-    <meta name="theme-color" content="#ffffff" />
-    <meta name="robots" content="index, follow" />
-    
-    <!-- Preload critical assets -->
-    <link rel="preload" href="/src/index.css" as="style" />
-    <link rel="preload" href="/src/main.tsx" as="script" />
-    
-    <!-- Favicon -->
+    <meta name="description" content="Let's Sail Andiamo - Join us on our sailing adventures!" />
+    <title>Let's Sail Andiamo</title>
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
     <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
-    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
     <link rel="manifest" href="/site.webmanifest" />
-    
-    <!-- Open Graph / Facebook -->
-    <meta property="og:type" content="website" />
-    <meta property="og:url" content="https://sailingfamilyhaven.com/" />
-    <meta property="og:title" content="Sailing Family Haven - Adventure Awaits on the Open Seas" />
-    <meta property="og:description" content="Join our sailing family's journey across the world's oceans. Discover sailing adventures, travel stories, maritime merchandise, and stunning ocean photography." />
+    <meta name="theme-color" content="#ffffff" />
+    <meta property="og:title" content="Let's Sail Andiamo" />
+    <meta property="og:description" content="Join us on our sailing adventures!" />
     <meta property="og:image" content="/og-image.png" />
-    
-    <!-- Twitter -->
+    <meta property="og:url" content="https://letssailandiamo.com" />
+    <meta property="og:type" content="website" />
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:url" content="https://sailingfamilyhaven.com/" />
-    <meta name="twitter:title" content="Sailing Family Haven - Adventure Awaits on the Open Seas" />
-    <meta name="twitter:description" content="Join our sailing family's journey across the world's oceans. Discover sailing adventures, travel stories, maritime merchandise, and stunning ocean photography." />
-    <meta name="twitter:image" content="/og-image.png" />
-    
-    <!-- Canonical URL -->
-    <link rel="canonical" href="https://sailingfamilyhaven.com" />
-
-    <!-- JSON-LD Structured Data -->
-    <script type="application/ld+json">
-      {
-        "@context": "https://schema.org",
-        "@type": "WebSite",
-        "name": "Sailing Family Haven",
-        "url": "https://sailingfamilyhaven.com",
-        "description": "Join our sailing family's journey across the world's oceans. Discover sailing adventures, travel stories, maritime merchandise, and stunning ocean photography.",
-        "potentialAction": {
-          "@type": "SearchAction",
-          "target": "https://sailingfamilyhaven.com/search?q={search_term_string}",
-          "query-input": "required name=search_term_string"
-        }
-      }
-    </script>
     
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -65,10 +24,21 @@
     <style>
       @font-face {
         font-family: 'Luminari';
-        src: local('Luminari'), local('Luminari-Regular');
+        src: local('Luminari'), local('Luminari-Regular'),
+             url('/fonts/Luminari-Regular.woff2') format('woff2'),
+             url('/fonts/Luminari-Regular.woff') format('woff');
         font-display: swap;
       }
     </style>
+    
+    <!-- Analytics -->
+    <script>
+      window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };
+    </script>
+    <script defer src="/_vercel/insights/script.js"></script>
+    
+    <!-- Pick and Edit -->
+    <script src="https://cdn.gpteng.co/gptengineer.js" type="module"></script>
   </head>
   <body>
     <div id="root"></div>

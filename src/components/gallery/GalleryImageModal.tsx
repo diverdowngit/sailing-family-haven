@@ -12,12 +12,11 @@ export const GalleryImageModal = ({ image, onClose }: GalleryImageModalProps) =>
   const imageUrl = image.fields?.image?.fields?.file?.url;
   if (!imageUrl) return null;
 
-  // Add quality parameters to Contentful URL for larger display
   const optimizedImageUrl = `${imageUrl}?w=1200&q=85&fm=webp`;
 
   return (
     <Dialog open={!!image} onOpenChange={onClose}>
-      <DialogContent className="max-w-4xl w-full p-0">
+      <DialogContent className="max-w-4xl w-full p-0 font-luminari">
         <div className="p-4">
           <h2 className="text-2xl font-bold">{image.fields.title}</h2>
         </div>

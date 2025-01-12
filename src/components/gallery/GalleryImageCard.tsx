@@ -9,13 +9,12 @@ export const GalleryImageCard = ({ image, onClick }: GalleryImageCardProps) => {
   const imageUrl = image.fields?.image?.fields?.file?.url;
   if (!imageUrl) return null;
 
-  // Add width and quality parameters to Contentful URL
   const optimizedImageUrl = `${imageUrl}?w=800&q=80&fm=webp`;
 
   return (
     <div
       key={image.sys.id}
-      className="group relative aspect-square w-full rounded-lg overflow-hidden shadow-md hover:shadow-lg transition-all duration-300 cursor-pointer"
+      className="group relative aspect-square w-full rounded-lg overflow-hidden shadow-md hover:shadow-lg transition-all duration-300 cursor-pointer font-luminari"
       onClick={() => onClick(image)}
       role="button"
       tabIndex={0}
