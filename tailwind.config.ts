@@ -19,7 +19,7 @@ export default {
     },
     extend: {
       fontFamily: {
-        luminari: ["Luminari", "Fantasy", "serif"],
+        luminari: ["Luminari", "Palatino", "Book Antiqua", "Georgia", "serif"],
       },
       colors: {
         navy: {
