@@ -19,7 +19,11 @@ const Navigation = () => {
     { name: "About", path: "/about" },
     { name: "Blog", path: "/blog" },
     { name: "Gallery", path: "/gallery" },
-    { name: "Merchandise", path: "/merchandise" },
+    { 
+      name: "Merchandise", 
+      path: "https://lets-sail-andiamo.myspreadshop.ie",
+      external: true 
+    },
     { name: "Keep Us Afloat", path: "/patreon" },
   ];
 
@@ -50,13 +54,24 @@ const Navigation = () => {
             <ul className="flex space-x-4 lg:space-x-8">
               {navItems.map((item) => (
                 <li key={item.name}>
-                  <Link
-                    to={item.path}
-                    className="text-navy-dark hover:text-coral transition-colors duration-200 text-sm lg:text-base py-2"
-                    aria-current={window.location.pathname === item.path ? "page" : undefined}
-                  >
-                    {item.name}
-                  </Link>
+                  {item.external ? (
+                    <a
+                      href={item.path}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-navy-dark hover:text-coral transition-colors duration-200 text-sm lg:text-base py-2"
+                    >
+                      {item.name}
+                    </a>
+                  ) : (
+                    <Link
+                      to={item.path}
+                      className="text-navy-dark hover:text-coral transition-colors duration-200 text-sm lg:text-base py-2"
+                      aria-current={window.location.pathname === item.path ? "page" : undefined}
+                    >
+                      {item.name}
+                    </Link>
+                  )}
                 </li>
               ))}
             </ul>
@@ -92,14 +107,26 @@ const Navigation = () => {
             <ul className="space-y-1">
               {navItems.map((item) => (
                 <li key={item.name}>
-                  <Link
-                    to={item.path}
-                    className="block px-3 py-2 text-sm font-medium text-navy-dark hover:text-coral transition-colors duration-200"
-                    onClick={() => setIsOpen(false)}
-                    aria-current={window.location.pathname === item.path ? "page" : undefined}
-                  >
-                    {item.name}
-                  </Link>
+                  {item.external ? (
+                    <a
+                      href={item.path}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="block px-3 py-2 text-sm font-medium text-navy-dark hover:text-coral transition-colors duration-200"
+                      onClick={() => setIsOpen(false)}
+                    >
+                      {item.name}
+                    </a>
+                  ) : (
+                    <Link
+                      to={item.path}
+                      className="block px-3 py-2 text-sm font-medium text-navy-dark hover:text-coral transition-colors duration-200"
+                      onClick={() => setIsOpen(false)}
+                      aria-current={window.location.pathname === item.path ? "page" : undefined}
+                    >
+                      {item.name}
+                    </Link>
+                  )}
                 </li>
               ))}
             </ul>
