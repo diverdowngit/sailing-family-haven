@@ -43,14 +43,14 @@ const Navigation = () => {
             </span>
             <Link 
               to="/" 
-              className="text-base sm:text-lg md:text-xl font-bold text-navy whitespace-nowrap"
+              className="text-base sm:text-lg md:text-xl font-bold text-navy whitespace-nowrap font-luminari"
               aria-label="Go to homepage"
             >
               Sailing Family
             </Link>
           </div>
 
-          <div className="hidden md:flex items-center space-x-4 lg:space-x-8">
+          <div className="hidden lg:flex items-center space-x-4 lg:space-x-8">
             <ul className="flex space-x-4 lg:space-x-8">
               {navItems.map((item) => (
                 <li key={item.name}>
@@ -59,14 +59,14 @@ const Navigation = () => {
                       href={item.path}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="text-navy-dark hover:text-coral transition-colors duration-200 text-sm lg:text-base py-2"
+                      className="text-navy-dark hover:text-coral transition-colors duration-200 text-sm lg:text-base py-2 font-luminari"
                     >
                       {item.name}
                     </a>
                   ) : (
                     <Link
                       to={item.path}
-                      className="text-navy-dark hover:text-coral transition-colors duration-200 text-sm lg:text-base py-2"
+                      className="text-navy-dark hover:text-coral transition-colors duration-200 text-sm lg:text-base py-2 font-luminari"
                       aria-current={window.location.pathname === item.path ? "page" : undefined}
                     >
                       {item.name}
@@ -79,23 +79,23 @@ const Navigation = () => {
 
           <button
             onClick={() => setIsOpen(!isOpen)}
-            className="md:hidden text-navy hover:text-coral transition-colors duration-200 p-2"
+            className="lg:hidden text-navy hover:text-coral transition-colors duration-200 p-2"
             aria-expanded={isOpen}
             aria-controls="mobile-menu"
             aria-label={isOpen ? "Close menu" : "Open menu"}
           >
             <span className="sr-only">{isOpen ? "Close menu" : "Open menu"}</span>
             {isOpen ? (
-              <X className="h-5 w-5" aria-hidden="true" />
+              <X className="h-6 w-6" aria-hidden="true" />
             ) : (
-              <Menu className="h-5 w-5" aria-hidden="true" />
+              <Menu className="h-6 w-6" aria-hidden="true" />
             )}
           </button>
         </div>
 
         <div
           id="mobile-menu"
-          className={`md:hidden transition-all duration-300 ease-in-out ${
+          className={`lg:hidden transition-all duration-300 ease-in-out ${
             isOpen
               ? "max-h-screen opacity-100 visible"
               : "max-h-0 opacity-0 invisible"
@@ -112,7 +112,7 @@ const Navigation = () => {
                       href={item.path}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="block px-3 py-2 text-sm font-medium text-navy-dark hover:text-coral transition-colors duration-200"
+                      className="block px-3 py-2 text-base font-medium text-navy-dark hover:text-coral transition-colors duration-200 font-luminari"
                       onClick={() => setIsOpen(false)}
                     >
                       {item.name}
@@ -120,7 +120,7 @@ const Navigation = () => {
                   ) : (
                     <Link
                       to={item.path}
-                      className="block px-3 py-2 text-sm font-medium text-navy-dark hover:text-coral transition-colors duration-200"
+                      className="block px-3 py-2 text-base font-medium text-navy-dark hover:text-coral transition-colors duration-200 font-luminari"
                       onClick={() => setIsOpen(false)}
                       aria-current={window.location.pathname === item.path ? "page" : undefined}
                     >
