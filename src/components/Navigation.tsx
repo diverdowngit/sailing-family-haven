@@ -39,11 +39,11 @@ const Navigation = () => {
         <div className="flex justify-between h-16">
           <div className="flex-shrink-0 flex items-center space-x-2">
             <span className="flex items-center" aria-hidden="true">
-              <Anchor className="h-5 w-5 sm:h-6 sm:w-6 text-navy" />
+              <Anchor className="h-6 w-6 sm:h-7 sm:w-7 text-navy" />
             </span>
             <Link 
               to="/" 
-              className="text-base sm:text-lg md:text-xl font-bold text-navy whitespace-nowrap font-luminari"
+              className="text-lg sm:text-xl md:text-2xl font-bold text-navy whitespace-nowrap font-luminari"
               aria-label="Go to homepage"
             >
               Sailing Family
@@ -59,14 +59,14 @@ const Navigation = () => {
                       href={item.path}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="text-navy-dark hover:text-coral transition-colors duration-200 text-sm lg:text-base py-2 font-luminari"
+                      className="text-navy-dark hover:text-coral transition-colors duration-200 text-base sm:text-lg lg:text-xl py-2 font-luminari"
                     >
                       {item.name}
                     </a>
                   ) : (
                     <Link
                       to={item.path}
-                      className="text-navy-dark hover:text-coral transition-colors duration-200 text-sm lg:text-base py-2 font-luminari"
+                      className="text-navy-dark hover:text-coral transition-colors duration-200 text-base sm:text-lg lg:text-xl py-2 font-luminari"
                       aria-current={window.location.pathname === item.path ? "page" : undefined}
                     >
                       {item.name}
@@ -86,9 +86,9 @@ const Navigation = () => {
           >
             <span className="sr-only">{isOpen ? "Close menu" : "Open menu"}</span>
             {isOpen ? (
-              <X className="h-6 w-6" aria-hidden="true" />
+              <X className="h-7 w-7" aria-hidden="true" />
             ) : (
-              <Menu className="h-6 w-6" aria-hidden="true" />
+              <Menu className="h-7 w-7" aria-hidden="true" />
             )}
           </button>
         </div>
@@ -112,7 +112,7 @@ const Navigation = () => {
                       href={item.path}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="block px-3 py-2 text-base font-medium text-navy-dark hover:text-coral transition-colors duration-200 font-luminari"
+                      className="block px-3 py-2 text-lg font-medium text-navy-dark hover:text-coral transition-colors duration-200 font-luminari"
                       onClick={() => setIsOpen(false)}
                     >
                       {item.name}
@@ -120,7 +120,7 @@ const Navigation = () => {
                   ) : (
                     <Link
                       to={item.path}
-                      className="block px-3 py-2 text-base font-medium text-navy-dark hover:text-coral transition-colors duration-200 font-luminari"
+                      className="block px-3 py-2 text-lg font-medium text-navy-dark hover:text-coral transition-colors duration-200 font-luminari"
                       onClick={() => setIsOpen(false)}
                       aria-current={window.location.pathname === item.path ? "page" : undefined}
                     >
