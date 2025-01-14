@@ -50,8 +50,8 @@ const Navigation = () => {
             </Link>
           </div>
 
-          <div className="hidden lg:flex items-center space-x-4 lg:space-x-8">
-            <ul className="flex space-x-4 lg:space-x-8">
+          <div className="hidden md:flex items-center space-x-4 md:space-x-8">
+            <ul className="flex space-x-4 md:space-x-8">
               {navItems.map((item) => (
                 <li key={item.name}>
                   {item.external ? (
@@ -59,14 +59,14 @@ const Navigation = () => {
                       href={item.path}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="text-navy-dark hover:text-coral transition-colors duration-200 text-base sm:text-lg lg:text-xl py-2 font-luminari"
+                      className="text-navy-dark hover:text-coral transition-colors duration-200 text-base sm:text-lg md:text-xl py-2 font-luminari"
                     >
                       {item.name}
                     </a>
                   ) : (
                     <Link
                       to={item.path}
-                      className="text-navy-dark hover:text-coral transition-colors duration-200 text-base sm:text-lg lg:text-xl py-2 font-luminari"
+                      className="text-navy-dark hover:text-coral transition-colors duration-200 text-base sm:text-lg md:text-xl py-2 font-luminari"
                       aria-current={window.location.pathname === item.path ? "page" : undefined}
                     >
                       {item.name}
@@ -79,23 +79,23 @@ const Navigation = () => {
 
           <button
             onClick={() => setIsOpen(!isOpen)}
-            className="lg:hidden text-navy hover:text-coral transition-colors duration-200 p-2"
+            className="md:hidden text-navy hover:text-coral transition-colors duration-200 p-2"
             aria-expanded={isOpen}
             aria-controls="mobile-menu"
             aria-label={isOpen ? "Close menu" : "Open menu"}
           >
             <span className="sr-only">{isOpen ? "Close menu" : "Open menu"}</span>
             {isOpen ? (
-              <X className="h-7 w-7" aria-hidden="true" />
+              <X className="h-8 w-8" aria-hidden="true" />
             ) : (
-              <Menu className="h-7 w-7" aria-hidden="true" />
+              <Menu className="h-8 w-8" aria-hidden="true" />
             )}
           </button>
         </div>
 
         <div
           id="mobile-menu"
-          className={`lg:hidden transition-all duration-300 ease-in-out ${
+          className={`md:hidden transition-all duration-300 ease-in-out ${
             isOpen
               ? "max-h-screen opacity-100 visible"
               : "max-h-0 opacity-0 invisible"
