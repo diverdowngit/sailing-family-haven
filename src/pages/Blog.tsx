@@ -2,8 +2,9 @@ import { useQuery } from "@tanstack/react-query";
 import { getBlogPosts } from "@/lib/contentful/api";
 import { Skeleton } from "@/components/ui/skeleton";
 import { format } from "date-fns";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
+import { Helmet } from "react-helmet";
 import {
   Dialog,
   DialogContent,
@@ -31,6 +32,14 @@ export default function Blog() {
     queryFn: getBlogPosts,
   });
 
+  useEffect(() => {
+    // Update canonical URL when page changes
+    const link = document.querySelector('link[rel="canonical"]') as HTMLLinkElement;
+    if (link) {
+      link.href = window.location.href;
+    }
+  }, [currentPage]);
+
   const getFirstParagraph = (content: any) => {
     const paragraphs = content.content.filter(
       (item: any) => item.nodeType === 'paragraph'
@@ -41,6 +50,15 @@ export default function Blog() {
   if (isLoading) {
     return (
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+        <Helmet>
+          <title>Blog - Let's Sail Andiamo</title>
+          <meta name="description" content="Read about our sailing adventures and experiences on the open seas." />
+          <meta name="robots" content="index, follow" />
+          <link rel="canonical" href={window.location.href} />
+          <meta property="og:title" content="Blog - Let's Sail Andiamo" />
+          <meta property="og:description" content="Read about our sailing adventures and experiences on the open seas." />
+          <meta property="og:type" content="blog" />
+        </Helmet>
         <Skeleton className="h-10 w-1/2 mb-4" />
         <Skeleton className="h-10 w-full mb-4" />
         <Skeleton className="h-10 w-full mb-4" />
