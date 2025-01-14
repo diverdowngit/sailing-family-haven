@@ -2,29 +2,17 @@ import { Asset, Entry, EntryFields } from 'contentful';
 import { Document } from '@contentful/rich-text-types';
 
 export interface BlogPostFields {
-  title: string;
-  slug: string;
-  excerpt: string;
+  title: EntryFields.Text;
+  slug: EntryFields.Text;
+  excerpt: EntryFields.Text;
   content: Document;
-  publishDate: string;
-  featuredImage: {
-    fields: {
-      file: {
-        url: string;
-      };
-    };
-  };
+  publishDate: EntryFields.Date;
+  featuredImage: Asset;
 }
 
 export interface GalleryImageFields {
-  title: string;
-  image: {
-    fields: {
-      file: {
-        url: string;
-      };
-    };
-  };
+  title: EntryFields.Text;
+  image: Asset;
 }
 
 export type BlogPost = Entry<BlogPostFields>;

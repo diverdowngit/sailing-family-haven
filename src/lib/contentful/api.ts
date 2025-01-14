@@ -12,7 +12,7 @@ const contentfulClient = import.meta.env.VITE_CONTENTFUL_SPACE_ID && import.meta
 export const getBlogPosts = async (): Promise<BlogPost[]> => {
   if (!contentfulClient) {
     console.log('Using placeholder blog posts');
-    return placeholderBlogPosts as unknown as BlogPost[];
+    return placeholderBlogPosts as BlogPost[];
   }
 
   try {
@@ -24,14 +24,14 @@ export const getBlogPosts = async (): Promise<BlogPost[]> => {
     return response.items as BlogPost[];
   } catch (error) {
     console.error('Error fetching blog posts:', error);
-    return placeholderBlogPosts as unknown as BlogPost[];
+    return placeholderBlogPosts as BlogPost[];
   }
 };
 
 export const getGalleryImages = async (): Promise<GalleryImage[]> => {
   if (!contentfulClient) {
     console.log('Using placeholder gallery images');
-    return placeholderGalleryImages as unknown as GalleryImage[];
+    return placeholderGalleryImages as GalleryImage[];
   }
 
   try {
@@ -43,6 +43,6 @@ export const getGalleryImages = async (): Promise<GalleryImage[]> => {
     return response.items as GalleryImage[];
   } catch (error) {
     console.error('Error fetching gallery images:', error);
-    return placeholderGalleryImages as unknown as GalleryImage[];
+    return placeholderGalleryImages as GalleryImage[];
   }
 };

@@ -33,7 +33,6 @@ export default function Blog() {
   });
 
   useEffect(() => {
-    // Update canonical URL when page changes
     const link = document.querySelector('link[rel="canonical"]') as HTMLLinkElement;
     if (link) {
       link.href = window.location.href;
@@ -79,13 +78,22 @@ export default function Blog() {
 
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+      <Helmet>
+        <title>Blog - Let's Sail Andiamo</title>
+        <meta name="description" content="Read about our sailing adventures and experiences on the open seas." />
+        <meta name="robots" content="index, follow" />
+        <link rel="canonical" href={window.location.href} />
+        <meta property="og:title" content="Blog - Let's Sail Andiamo" />
+        <meta property="og:description" content="Read about our sailing adventures and experiences on the open seas." />
+        <meta property="og:type" content="blog" />
+      </Helmet>
       <h1 className="text-4xl font-bold text-navy mb-8">Blog</h1>
       <div className="space-y-8">
         {paginatedPosts.map((post) => (
           <div key={post.sys.id} className="border rounded-lg p-6 shadow-sm">
             {post.fields.featuredImage && (
               <img
-                src={post.fields.featuredImage.fields.file.url}
+                src={`https:${post.fields.featuredImage.fields.file.url}`}
                 alt={post.fields.title}
                 className="w-full h-64 object-cover rounded-lg mb-4"
               />
@@ -138,7 +146,7 @@ export default function Blog() {
               </DialogTitle>
               {selectedPost.fields.featuredImage && (
                 <img
-                  src={selectedPost.fields.featuredImage.fields.file.url}
+                  src={`https:${selectedPost.fields.featuredImage.fields.file.url}`}
                   alt={selectedPost.fields.title}
                   className="w-full max-h-[40vh] object-contain rounded-lg mb-6"
                 />
