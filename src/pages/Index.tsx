@@ -1,9 +1,20 @@
 import { ArrowRight } from "lucide-react";
 import { Link } from "react-router-dom";
+import { Helmet } from "react-helmet";
 
 const Home = () => {
   return (
     <div>
+      <Helmet>
+        <title>Let's Sail Andiamo - Adventure Awaits on the Open Seas</title>
+        <meta name="description" content="Follow our family's journey as we explore the world's oceans and share our sailing adventures." />
+        <meta name="robots" content="index, follow" />
+        <link rel="canonical" href={window.location.href} />
+        <meta property="og:title" content="Let's Sail Andiamo - Adventure Awaits on the Open Seas" />
+        <meta property="og:description" content="Follow our family's journey as we explore the world's oceans and share our sailing adventures." />
+        <meta property="og:type" content="website" />
+      </Helmet>
+
       {/* Hero Section */}
       <section 
         className="relative h-[80vh] bg-cover bg-center"

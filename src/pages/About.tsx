@@ -1,7 +1,18 @@
+import { Helmet } from "react-helmet";
+
 const About = () => {
   return (
-    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 md:py-16">
-      <h1 className="text-3xl md:text-4xl font-bold text-navy mb-6 md:mb-8 font-luminari">Our Story</h1>
+    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+      <Helmet>
+        <title>About Us - Let's Sail Andiamo</title>
+        <meta name="description" content="Learn about our sailing family and our journey across the seas." />
+        <meta name="robots" content="index, follow" />
+        <link rel="canonical" href={window.location.href} />
+        <meta property="og:title" content="About Us - Let's Sail Andiamo" />
+        <meta property="og:description" content="Learn about our sailing family and our journey across the seas." />
+        <meta property="og:type" content="website" />
+      </Helmet>
+      <h1 className="text-4xl font-bold text-navy mb-8">About Us</h1>
       <div className="prose max-w-none">
         <p className="text-base md:text-lg text-gray-700 mb-4 md:mb-6 font-luminari">
           Welcome to our sailing family! We're a family of adventurers who decided to
