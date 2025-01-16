@@ -1,4 +1,31 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!-- 
+Bing Webmaster API Documentation:
+
+Submit URLs:
+POST /webmaster/api.svc/json/SubmitUrlbatch?​apikey=sampleapikeyEDECC1EA4AE341CC8B6 HTTP/1.1​
+Content-Type: application/json; charset=utf-8​
+Host: ssl.bing.com​
+
+Request Body:
+{
+  "siteUrl":"http://yoursite.com",​
+  "urlList":[
+    "http://yoursite.com/url1",
+    "http://yoursite.com/url2",
+    "http://yoursite.com/url3"
+  ]
+}
+
+Response:
+HTTP/1.1 200 OK
+Content-Length: 10
+Content-Type: application/json; charset=utf-8
+
+{
+  "d":null
+}
+-->
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://letssailandiamo.com/</loc>
