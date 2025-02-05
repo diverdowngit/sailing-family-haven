@@ -9,11 +9,14 @@ Host: ssl.bing.com​
 
 Request Body:
 {
-  "siteUrl":"http://yoursite.com",​
+  "siteUrl":"https://letssailandiamo.com",​
   "urlList":[
-    "http://yoursite.com/url1",
-    "http://yoursite.com/url2",
-    "http://yoursite.com/url3"
+    "https://letssailandiamo.com/",
+    "https://letssailandiamo.com/about",
+    "https://letssailandiamo.com/blog",
+    "https://letssailandiamo.com/gallery",
+    "https://letssailandiamo.com/merchandise",
+    "https://letssailandiamo.com/patreon"
   ]
 }
 
