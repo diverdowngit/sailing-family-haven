@@ -1,5 +1,5 @@
 import { createClient } from 'contentful';
-import type { BlogPost, GalleryImage, BlogPostFields, GalleryImageFields } from './types';
+import type { BlogPost, GalleryImage } from './types';
 import { placeholderBlogPosts, placeholderGalleryImages } from './placeholders';
 
 const contentfulClient = import.meta.env.VITE_CONTENTFUL_SPACE_ID && import.meta.env.VITE_CONTENTFUL_ACCESS_TOKEN
@@ -12,11 +12,11 @@ const contentfulClient = import.meta.env.VITE_CONTENTFUL_SPACE_ID && import.meta
 export const getBlogPosts = async (): Promise<BlogPost[]> => {
   if (!contentfulClient) {
     console.log('Using placeholder blog posts');
-    return placeholderBlogPosts as BlogPost[];
+    return placeholderBlogPosts;
   }
 
   try {
-    const response = await contentfulClient.getEntries<BlogPostFields>({
+    const response = await contentfulClient.getEntries<any>({
       content_type: 'blogPost',
       order: ['-sys.createdAt'],
       include: 2,
@@ -24,18 +24,18 @@ export const getBlogPosts = async (): Promise<BlogPost[]> => {
     return response.items as BlogPost[];
   } catch (error) {
     console.error('Error fetching blog posts:', error);
-    return placeholderBlogPosts as BlogPost[];
+    return placeholderBlogPosts;
   }
 };
 
 export const getGalleryImages = async (): Promise<GalleryImage[]> => {
   if (!contentfulClient) {
     console.log('Using placeholder gallery images');
-    return placeholderGalleryImages as GalleryImage[];
+    return placeholderGalleryImages;
   }
 
   try {
-    const response = await contentfulClient.getEntries<GalleryImageFields>({
+    const response = await contentfulClient.getEntries<any>({
       content_type: 'galleryImage',
       order: ['-sys.createdAt'],
       include: 2,
@@ -43,6 +43,6 @@ export const getGalleryImages = async (): Promise<GalleryImage[]> => {
     return response.items as GalleryImage[];
   } catch (error) {
     console.error('Error fetching gallery images:', error);
-    return placeholderGalleryImages as GalleryImage[];
+    return placeholderGalleryImages;
   }
 };
